@@ -2,6 +2,14 @@ from django.db import models
 
 
 class CrossroadsCampaign(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["identifier", "date"],
+                name="crossroads_unique_id_for_date",
+            )
+        ]
+
     identifier = models.CharField(max_length=128)
     name = models.CharField(max_length=256)
     date = models.DateField()
@@ -19,6 +27,14 @@ class CrossroadsCampaign(models.Model):
 
 
 class TiktokBusinessCampaign(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["identifier", "date"],
+                name="tiktok_business_unique_id_for_date",
+            )
+        ]
+
     identifier = models.CharField(max_length=128)
     name = models.CharField(max_length=256)
     advertiser_id = models.CharField(max_length=128)
@@ -42,6 +58,7 @@ class TiktokBusinessCampaign(models.Model):
 
 
 class MergedCampaign(models.Model):
+
     tiktok_business = models.ForeignKey(
         TiktokBusinessCampaign,
         on_delete=models.CASCADE,
