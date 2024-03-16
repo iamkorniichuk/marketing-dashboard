@@ -4,7 +4,7 @@ from django.db import models
 class CrossroadsCampaign(models.Model):
     identifier = models.CharField(max_length=128)
     name = models.CharField(max_length=256)
-    updated = models.DateTimeField(auto_now=True)
+    date = models.DateField()
     revenue = models.FloatField()
     rpc = models.FloatField()
     rpv = models.FloatField()
@@ -14,11 +14,15 @@ class CrossroadsCampaign(models.Model):
     lander_searches = models.IntegerField()
     revenue_events = models.IntegerField()
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class TiktokBusinessCampaign(models.Model):
     identifier = models.CharField(max_length=128)
     name = models.CharField(max_length=256)
     advertiser_id = models.CharField(max_length=128)
+    date = models.DateField()
     video_play_actions = models.IntegerField()
     video_watched_2s = models.IntegerField()
     video_watched_6s = models.IntegerField()
@@ -32,6 +36,9 @@ class TiktokBusinessCampaign(models.Model):
     clicks = models.IntegerField()
     spend = models.FloatField()
     conversion = models.FloatField()
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class MergedCampaign(models.Model):
