@@ -1,6 +1,9 @@
+# Credentials
+crossroads.json
+tiktok_business.json
+
 # Development-specific files
 db.sqlite3
-
 
 # Django
 *.log

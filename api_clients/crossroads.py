@@ -4,7 +4,8 @@ import requests
 
 class CrossroadsApiClient:
     def __init__(self, crossroads_config: str):
-        self.credentials = json.loads(open(crossroads_config))
+        with open(crossroads_config) as file:
+            self.credentials = json.load(file)
         self.base_url = "https://crossroads.domainactive.com/api/v2/"
 
     def build_url(self, endpoint):
