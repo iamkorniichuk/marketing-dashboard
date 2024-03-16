@@ -1,6 +1,9 @@
 import json
+import requests
+import pandas as pd
+from urllib import parse
 
-from business_api_client.api import AuthenticationApi, ReportingApi
+from business_api_client.api import AdApi, AuthenticationApi, ReportingApi
 from business_api_client.api_client import ApiClient
 
 
@@ -11,6 +14,7 @@ class TiktokBusinessApiClient:
         self.api_client = ApiClient()
         self.reporting_service = ReportingApi()
         self.authentication_service = AuthenticationApi(self.api_client)
+        self.ad_service = AdApi(self.api_client)
 
     def format_date(self, date):
         return date.strftime("%Y-%m-%d")
@@ -66,3 +70,31 @@ class TiktokBusinessApiClient:
             results.append(data)
 
         return results
+
+    def request_crossroads_id(self, advertiser_id):
+        response = self.ad_service.ad_get(
+            advertiser_id,
+            self.credentials["access_token"],
+        )
+        dataframe = pd.DataFrame(response["data"]["list"])
+        dataframe.drop_duplicates("campaign_id", keep="last", inplace=True)
+        dataframe["cr_campaign_id"] = dataframe.apply(
+            lambda row: self.extract_crossroads_id(row["landing_page_url"]),
+            axis=1,
+        )
+        dataframe = dataframe[dataframe["cr_campaign_id"].notnull()]
+        return dataframe[["cr_campaign_id", "campaign_id"]].to_dict("records")
+
+    def extract_crossroads_id(self, url):
+        try:
+            initial_url = parse.urlparse(url)
+            is_valid = all([initial_url.scheme, initial_url.netloc])
+
+            if is_valid:
+                response = requests.get(url)
+                redirect_url = parse.urlparse(response.url)
+                url_params = parse.parse_qs(redirect_url.query)
+                cr_campaign_id = url_params["acid"]
+                return cr_campaign_id[0]
+        except Exception:
+            pass
