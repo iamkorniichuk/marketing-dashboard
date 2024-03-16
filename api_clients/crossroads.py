@@ -1,5 +1,6 @@
 import json
 import requests
+import pandas as pd
 
 
 class CrossroadsApiClient:
@@ -26,3 +27,34 @@ class CrossroadsApiClient:
         }
 
         return requests.get(full_url, params=params).json()["campaigns_info"]
+
+    def request_keywords_report(self, start_date, end_date):
+        full_url = self.build_url("get-dynamic-landers")
+        start_date = self.format_date(start_date)
+        end_date = self.format_date(end_date)
+
+        params = {
+            "api_key": self.credentials["api_key"],
+            "start_date": start_date,
+            "end_date": end_date,
+        }
+
+        response = requests.get(full_url, params=params)
+        dataframe = pd.DataFrame(response.json())[
+            [
+                "campaign_id",
+                "lander_keyword",
+                "clicks",
+            ]
+        ]
+
+        campaign_ids = []
+        for campaign_id in dataframe["campaign_id"].unique().tolist():
+            mask = dataframe["campaign_id"] == campaign_id
+            top_keywords = (
+                dataframe[mask].sort_values("clicks", ascending=False).head(3)
+            )
+            campaign_ids.append(top_keywords)
+
+        completed_dataframe = pd.concat(campaign_ids)
+        return completed_dataframe[completed_dataframe["campaign_id"].notnull()]
