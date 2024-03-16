@@ -17,7 +17,7 @@ class CrossroadsCampaign(models.Model):
 
 class TiktokBusinessCampaign(models.Model):
     identifier = models.CharField(max_length=128)
-    name = models.IntegerField()
+    name = models.CharField(max_length=256)
     advertiser_id = models.CharField(max_length=128)
     video_play_actions = models.IntegerField()
     video_watched_2s = models.IntegerField()
