@@ -1,9 +1,15 @@
 from datetime import datetime
 
 from django.core.management.base import BaseCommand
+from django.core.exceptions import ObjectDoesNotExist
 
 from api_clients import TiktokBusinessApiClient, CrossroadsApiClient
-from campaigns.models import TiktokBusinessCampaign, CrossroadsCampaign, MergedCampaign
+from campaigns.models import (
+    TiktokBusinessCampaign,
+    CrossroadsCampaign,
+    CrossroadsToTiktokBusinessIdentifiers,
+    MergedCampaign,
+)
 
 
 class Command(BaseCommand):
@@ -14,16 +20,83 @@ class Command(BaseCommand):
         parser.add_argument("tiktok", type=str)
 
     def handle(self, *args, **options):
-        crossroads_campaigns = self.gather_crossroads_campaigns(options["crossroads"])
-        tiktok_business_campaigns = self.gather_tiktok_business_campaigns(
-            options["tiktok"]
+        self.datetime = datetime.now()
+
+        self.crossroads_api_client = CrossroadsApiClient(options["crossroads"])
+        self.tiktok_business_api_client = TiktokBusinessApiClient(options["tiktok"])
+
+        crossroads_campaigns = self.gather_crossroads_campaigns()
+        self.stdout.write(
+            self.style.SUCCESS(
+                f"Created {len(crossroads_campaigns)} Crossroads Campaigns"
+            )
+        )
+        tiktok_business_campaigns = self.gather_tiktok_business_campaigns()
+        self.stdout.write(
+            self.style.SUCCESS(
+                f"Created {len(tiktok_business_campaigns)} Tiktok Business Campaigns"
+            )
+        )
+        merged_campaigns = self.gather_merged_campaigns(tiktok_business_campaigns)
+        self.stdout.write(
+            self.style.SUCCESS(f"Created {len(merged_campaigns)} Merged Campaigns")
         )
 
-    def gather_crossroads_campaigns(self, config):
-        api_client = CrossroadsApiClient(config)
+    # TODO: Optimize 'cause there are too many Tiktok Business Campaigns
+    def gather_merged_campaigns(self, tiktok_business_campaigns):
+        objs = []
+        for campaign in tiktok_business_campaigns:
+            if not CrossroadsToTiktokBusinessIdentifiers.objects.filter(
+                tiktok_business=campaign.identifier
+            ).exists():
+                crossroads_ids = self.gather_crossroads_ids(campaign.advertiser_id)
+                self.stdout.write(
+                    self.style.SUCCESS(
+                        f"Created {len(crossroads_ids)} Crossroads To TiktokBusiness Identifiers for {campaign.advertiser_id} Advertiser"
+                    )
+                )
 
-        today = datetime.now()
-        data = api_client.request_campaigns_report(today, today)
+            try:
+                ids = CrossroadsToTiktokBusinessIdentifiers.objects.get(
+                    tiktok_business=campaign.identifier
+                )
+                tiktok_business = TiktokBusinessCampaign.objects.get(
+                    identifier=ids.tiktok_business,
+                    date=self.datetime.date(),
+                )
+                crossroads = CrossroadsCampaign.objects.get(
+                    identifier=ids.crossroads,
+                    date=self.datetime.date(),
+                )
+                objs.append(
+                    MergedCampaign(
+                        tiktok_business=tiktok_business, crossroads=crossroads
+                    )
+                )
+            except ObjectDoesNotExist:
+                pass
+        return MergedCampaign.objects.bulk_create(objs)
+
+    def gather_crossroads_ids(self, advertiser_id):
+        data = self.tiktok_business_api_client.request_crossroads_id(advertiser_id)
+
+        objs = []
+        for row in data:
+            objs.append(
+                CrossroadsToTiktokBusinessIdentifiers(
+                    tiktok_business=row["campaign_id"],
+                    crossroads=row["cr_campaign_id"],
+                )
+            )
+
+        return CrossroadsToTiktokBusinessIdentifiers.objects.bulk_create(
+            objs, ignore_conflicts=True
+        )
+
+    def gather_crossroads_campaigns(self):
+        data = self.crossroads_api_client.request_campaigns_report(
+            self.datetime, self.datetime
+        )
 
         campaigns = []
         for row in data:
@@ -31,7 +104,7 @@ class Command(BaseCommand):
                 CrossroadsCampaign(
                     identifier=row["campaign_id"],
                     name=row["campaign__name"],
-                    date=today.date(),
+                    date=self.datetime.date(),
                     revenue=row["revenue"],
                     rpc=row["rpc"],
                     rpv=row["rpv"],
@@ -60,18 +133,15 @@ class Command(BaseCommand):
             ],
         )
 
-    def gather_tiktok_business_campaigns(self, config):
-        api_client = TiktokBusinessApiClient(config)
-
-        today = datetime.now()
-        advertisers = api_client.request_advertisers()
+    def gather_tiktok_business_campaigns(self):
+        advertisers = self.tiktok_business_api_client.request_advertisers()
 
         campaigns = []
         for advertiser in advertisers:
-            data = api_client.request_campaigns_report(
+            data = self.tiktok_business_api_client.request_campaigns_report(
                 advertiser["advertiser_id"],
-                today,
-                today,
+                self.datetime,
+                self.datetime,
             )
 
             for row in data:
@@ -80,7 +150,7 @@ class Command(BaseCommand):
                         identifier=row["campaign_id"],
                         name=row["campaign_name"],
                         advertiser_id=row["advertiser_id"],
-                        date=today.date(),
+                        date=self.datetime.date(),
                         video_play_actions=row["video_play_actions"],
                         video_watched_2s=row["video_watched_2s"],
                         video_watched_6s=row["video_watched_6s"],

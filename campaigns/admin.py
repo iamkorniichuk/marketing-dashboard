@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from campaigns.models import TiktokBusinessCampaign, CrossroadsCampaign, MergedCampaign
+from campaigns.models import (
+    TiktokBusinessCampaign,
+    CrossroadsCampaign,
+    MergedCampaign,
+    CrossroadsToTiktokBusinessIdentifiers,
+)
 
 
 @admin.register(TiktokBusinessCampaign)
@@ -15,4 +20,9 @@ class CrossroadsCampaignAdmin(admin.ModelAdmin):
 
 @admin.register(MergedCampaign)
 class MergedCampaignAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(CrossroadsToTiktokBusinessIdentifiers)
+class CrossroadsToTiktokBusinessIdentifiersAdmin(admin.ModelAdmin):
     pass
