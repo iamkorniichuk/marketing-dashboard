@@ -32,3 +32,14 @@ class TiktokBusinessCampaign(models.Model):
     clicks = models.IntegerField()
     spend = models.FloatField()
     conversion = models.FloatField()
+
+
+class MergedCampaign(models.Model):
+    tiktok_business = models.ForeignKey(
+        TiktokBusinessCampaign,
+        on_delete=models.CASCADE,
+    )
+    crossroads = models.ForeignKey(
+        CrossroadsCampaign,
+        on_delete=models.CASCADE,
+    )
