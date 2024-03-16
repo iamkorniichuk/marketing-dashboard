@@ -1,3 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
+from campaigns.models import TiktokBusinessCampaign, CrossroadsCampaign, MergedCampaign
+
+
+@admin.register(TiktokBusinessCampaign)
+class TiktokBusinessCampaignAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(CrossroadsCampaign)
+class CrossroadsCampaignAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(MergedCampaign)
+class MergedCampaignAdmin(admin.ModelAdmin):
+    pass
