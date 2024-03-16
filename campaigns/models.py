@@ -1,6 +1,11 @@
 from django.db import models
 
 
+class CrossroadsToTiktokBusinessIdentifiers(models.Model):
+    tiktok_business = models.CharField(max_length=128, unique=True)
+    crossroads = models.CharField(max_length=128, unique=True)
+
+
 class CrossroadsCampaign(models.Model):
     class Meta:
         constraints = [
@@ -58,7 +63,6 @@ class TiktokBusinessCampaign(models.Model):
 
 
 class MergedCampaign(models.Model):
-
     tiktok_business = models.ForeignKey(
         TiktokBusinessCampaign,
         on_delete=models.CASCADE,
