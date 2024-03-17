@@ -1,6 +1,7 @@
 # Credentials
 crossroads.json
 tiktok_business.json
+etc/
 
 # Development-specific files
 db.sqlite3
