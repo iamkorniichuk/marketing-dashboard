@@ -38,6 +38,7 @@ class Command(BaseCommand):
                     campaign_id=row["campaign_id"],
                     lander_keyword=row["campaign_id"],
                     clicks=row["clicks"],
+                    date=self.datetime.date(),
                 )
             )
 
