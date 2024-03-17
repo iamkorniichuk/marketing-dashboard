@@ -40,13 +40,16 @@ class CrossroadsApiClient:
         }
 
         response = requests.get(full_url, params=params)
-        dataframe = pd.DataFrame(response.json())[
-            [
-                "campaign_id",
-                "lander_keyword",
-                "clicks",
+        try:
+            dataframe = pd.DataFrame(response.json())[
+                [
+                    "campaign_id",
+                    "lander_keyword",
+                    "clicks",
+                ]
             ]
-        ]
+        except KeyError:
+            return []
 
         campaign_ids = []
         for campaign_id in dataframe["campaign_id"].unique().tolist():
@@ -57,4 +60,6 @@ class CrossroadsApiClient:
             campaign_ids.append(top_keywords)
 
         completed_dataframe = pd.concat(campaign_ids)
-        return completed_dataframe[completed_dataframe["campaign_id"].notnull()]
+        return completed_dataframe[
+            completed_dataframe["campaign_id"].notnull()
+        ].to_dict("records")
