@@ -75,7 +75,7 @@ class Command(BaseCommand):
                 )
             except ObjectDoesNotExist:
                 pass
-        return MergedCampaign.objects.bulk_create(objs)
+        return MergedCampaign.objects.bulk_create(objs, ignore_conflicts=True)
 
     def gather_crossroads_ids(self, advertiser_id):
         data = self.tiktok_business_api_client.request_crossroads_id(advertiser_id)

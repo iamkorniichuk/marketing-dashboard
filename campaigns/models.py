@@ -63,6 +63,14 @@ class TiktokBusinessCampaign(models.Model):
 
 
 class MergedCampaign(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["tiktok_business", "crossroads", "date"],
+                name="merged_campaign_unique_for_date",
+            )
+        ]
+
     tiktok_business = models.ForeignKey(
         TiktokBusinessCampaign,
         on_delete=models.CASCADE,
@@ -71,3 +79,4 @@ class MergedCampaign(models.Model):
         CrossroadsCampaign,
         on_delete=models.CASCADE,
     )
+    date = models.DateField()
