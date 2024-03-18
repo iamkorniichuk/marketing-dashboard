@@ -21,6 +21,7 @@ class CrossroadsCampaignAdmin(admin.ModelAdmin):
 
 @admin.register(MergedCampaign)
 class MergedCampaignAdmin(admin.ModelAdmin):
+    list_filter = ["crossroads__name"]
     list_display = [
         "get_tiktok_business_name",
         "get_tiktok_business_identifier",
