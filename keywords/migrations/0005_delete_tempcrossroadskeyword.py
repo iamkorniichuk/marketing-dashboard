@@ -10,7 +10,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name="TempCrossroadsKeyword",
+        migrations.AlterModelOptions(
+            name="tempcrossroadskeyword",
+            options={
+                "managed": False,
+            },
         ),
     ]

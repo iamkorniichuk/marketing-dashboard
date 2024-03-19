@@ -7,16 +7,26 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("campaigns", "0011_auto_20240319_1255"),
+        ("metrics", "0004_auto_20240319_1907"),
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name="MergedCampaign",
+        migrations.AlterModelOptions(
+            name="mergedcampaign",
+            options={
+                "managed": False,
+            },
         ),
-        migrations.DeleteModel(
-            name="TempCrossroadsCampaign",
+        migrations.AlterModelOptions(
+            name="tempcrossroadscampaign",
+            options={
+                "managed": False,
+            },
         ),
-        migrations.DeleteModel(
-            name="TempTiktokBusinessCampaign",
+        migrations.AlterModelOptions(
+            name="temptiktokbusinesscampaign",
+            options={
+                "managed": False,
+            },
         ),
     ]
