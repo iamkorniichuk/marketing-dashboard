@@ -58,6 +58,7 @@ class CampaignMetrics(models.Model):
                 name="unique_campaign_metrics_for_date",
             )
         ]
+        verbose_name_plural = "Campaign Metrics"
 
     tiktok_business_metrics = models.ForeignKey(
         TiktokBusinessCampaignMetrics,
@@ -78,6 +79,7 @@ class CrossroadsKeywordMetrics(models.Model):
                 name="unique_crossroads_keywords_metrics_for_date",
             )
         ]
+        verbose_name_plural = "Crossroads Keyword Metrics"
 
     campaign = models.ForeignKey(CrossroadsCampaign, on_delete=models.PROTECT)
     lander_keyword = models.CharField(max_length=128)

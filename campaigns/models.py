@@ -2,6 +2,9 @@ from django.db import models
 
 
 class CrossroadsToTiktokBusinessIdentifiers(models.Model):
+    class Meta:
+        verbose_name_plural = "Crossroads To Tiktok Business Identifiers"
+
     tiktok_business = models.CharField(max_length=128, unique=True)
     crossroads = models.CharField(max_length=128, unique=True)
 
