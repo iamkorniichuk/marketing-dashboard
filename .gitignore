@@ -2,6 +2,7 @@
 crossroads.json
 tiktok_business.json
 etc/
+static/
 
 # Development-specific files
 db.sqlite3
