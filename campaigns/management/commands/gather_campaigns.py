@@ -5,8 +5,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from api_clients import TiktokBusinessApiClient, CrossroadsApiClient
 from campaigns.models import (
-    TiktokBusinessCampaign,
-    CrossroadsCampaign,
+    TempTiktokBusinessCampaign,
+    TempCrossroadsCampaign,
     CrossroadsToTiktokBusinessIdentifiers,
     MergedCampaign,
 )
@@ -60,11 +60,11 @@ class Command(BaseCommand):
                 ids = CrossroadsToTiktokBusinessIdentifiers.objects.get(
                     tiktok_business=campaign.identifier
                 )
-                tiktok_business = TiktokBusinessCampaign.objects.get(
+                tiktok_business = TempTiktokBusinessCampaign.objects.get(
                     identifier=ids.tiktok_business,
                     date=self.datetime.date(),
                 )
-                crossroads = CrossroadsCampaign.objects.get(
+                crossroads = TempCrossroadsCampaign.objects.get(
                     identifier=ids.crossroads,
                     date=self.datetime.date(),
                 )
@@ -101,7 +101,7 @@ class Command(BaseCommand):
         campaigns = []
         for row in data:
             campaigns.append(
-                CrossroadsCampaign(
+                TempCrossroadsCampaign(
                     identifier=row["campaign_id"],
                     name=row["campaign__name"],
                     date=self.datetime.date(),
@@ -116,7 +116,7 @@ class Command(BaseCommand):
                 )
             )
 
-        return CrossroadsCampaign.objects.bulk_create(
+        return TempCrossroadsCampaign.objects.bulk_create(
             campaigns,
             update_conflicts=True,
             unique_fields=["identifier", "date"],
@@ -146,7 +146,7 @@ class Command(BaseCommand):
 
             for row in data:
                 campaigns.append(
-                    TiktokBusinessCampaign(
+                    TempTiktokBusinessCampaign(
                         identifier=row["campaign_id"],
                         name=row["campaign_name"],
                         advertiser_id=row["advertiser_id"],
@@ -167,7 +167,7 @@ class Command(BaseCommand):
                     )
                 )
 
-        return TiktokBusinessCampaign.objects.bulk_create(
+        return TempTiktokBusinessCampaign.objects.bulk_create(
             campaigns,
             update_conflicts=True,
             unique_fields=["identifier", "date"],
