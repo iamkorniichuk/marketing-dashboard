@@ -3,7 +3,7 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 
 from api_clients import TiktokBusinessApiClient, CrossroadsApiClient
-from keywords.models import CrossroadsKeyword
+from keywords.models import TempCrossroadsKeyword
 
 
 class Command(BaseCommand):
@@ -34,7 +34,7 @@ class Command(BaseCommand):
         keywords = []
         for row in data:
             keywords.append(
-                CrossroadsKeyword(
+                TempCrossroadsKeyword(
                     campaign_id=row["campaign_id"],
                     lander_keyword=row["campaign_id"],
                     clicks=row["clicks"],
@@ -42,7 +42,7 @@ class Command(BaseCommand):
                 )
             )
 
-        return CrossroadsKeyword.objects.bulk_create(
+        return TempCrossroadsKeyword.objects.bulk_create(
             keywords,
             update_conflicts=True,
             unique_fields=["campaign_id", "lander_keyword", "date"],
