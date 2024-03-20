@@ -78,3 +78,12 @@ class MergedCampaign(models.Model):
         on_delete=models.CASCADE,
     )
     date = models.DateField()
+
+
+class TempCrossroadsToTiktokBusinessIdentifiers(models.Model):
+    class Meta:
+        verbose_name_plural = "Crossroads To Tiktok Business Identifiers"
+        managed = False
+
+    tiktok_business = models.CharField(max_length=128, unique=True)
+    crossroads = models.CharField(max_length=128, unique=True)
