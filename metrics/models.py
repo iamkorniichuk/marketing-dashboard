@@ -12,7 +12,11 @@ class CrossroadsCampaignMetrics(models.Model):
             )
         ]
 
-    campaign = models.ForeignKey(CrossroadsCampaign, on_delete=models.PROTECT)
+    campaign = models.ForeignKey(
+        CrossroadsCampaign,
+        on_delete=models.PROTECT,
+        related_name="campaign_metrics",
+    )
     date = models.DateField()
     revenue = models.FloatField()
     rpc = models.FloatField()
@@ -33,7 +37,11 @@ class TiktokBusinessCampaignMetrics(models.Model):
             )
         ]
 
-    campaign = models.ForeignKey(TiktokBusinessCampaign, on_delete=models.PROTECT)
+    campaign = models.ForeignKey(
+        TiktokBusinessCampaign,
+        on_delete=models.PROTECT,
+        related_name="campaign_metrics",
+    )
     date = models.DateField()
     video_play_actions = models.IntegerField()
     video_watched_2s = models.IntegerField()
@@ -63,10 +71,12 @@ class CampaignMetrics(models.Model):
     tiktok_business_metrics = models.ForeignKey(
         TiktokBusinessCampaignMetrics,
         on_delete=models.CASCADE,
+        related_name="all_campaign_metrics",
     )
     crossroads_metrics = models.ForeignKey(
         CrossroadsCampaignMetrics,
         on_delete=models.CASCADE,
+        related_name="all_campaign_metrics",
     )
     date = models.DateField()
 
@@ -81,7 +91,11 @@ class CrossroadsKeywordMetrics(models.Model):
         ]
         verbose_name_plural = "Crossroads Keyword Metrics"
 
-    campaign = models.ForeignKey(CrossroadsCampaign, on_delete=models.PROTECT)
+    campaign = models.ForeignKey(
+        CrossroadsCampaign,
+        on_delete=models.PROTECT,
+        related_name="keyword_metrics",
+    )
     lander_keyword = models.CharField(max_length=128)
     clicks = models.IntegerField()
     date = models.DateField()
