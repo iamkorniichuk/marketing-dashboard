@@ -1,13 +1,6 @@
 from django.contrib import admin
-from commons.admin import get_all_fieldnames
 
-from metrics.models import CampaignMetrics, CrossroadsKeywordMetrics
-
-
-@admin.register(CrossroadsKeywordMetrics)
-class CrossroadsKeywordMetricsAdmin(admin.ModelAdmin):
-    list_filter = ["campaign__name"]
-    list_display = get_all_fieldnames(CrossroadsKeywordMetrics)
+from metrics.models import CampaignMetrics
 
 
 @admin.register(CampaignMetrics)
