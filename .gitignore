@@ -1,6 +1,8 @@
 # Credentials
 crossroads.json
 tiktok_business.json
+google_ads.yaml
+keyword_request.json
 etc/
 static/
 
