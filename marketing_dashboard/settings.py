@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "campaigns",
     "keywords",
     "metrics",
+    "regions",
 ]
 
 MIDDLEWARE = [
