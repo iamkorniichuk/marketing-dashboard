@@ -1,0 +1,2182 @@
+[
+    {
+        "model": "regions.region",
+        "pk": 2004,
+        "fields": {
+            "name": "Afghanistan",
+            "canonical_name": "Afghanistan",
+            "country_code": "AF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2008,
+        "fields": {
+            "name": "Albania",
+            "canonical_name": "Albania",
+            "country_code": "AL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2010,
+        "fields": {
+            "name": "Antarctica",
+            "canonical_name": "Antarctica",
+            "country_code": "AQ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2012,
+        "fields": {
+            "name": "Algeria",
+            "canonical_name": "Algeria",
+            "country_code": "DZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2016,
+        "fields": {
+            "name": "American Samoa",
+            "canonical_name": "American Samoa",
+            "country_code": "AS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2020,
+        "fields": {
+            "name": "Andorra",
+            "canonical_name": "Andorra",
+            "country_code": "AD",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2024,
+        "fields": {
+            "name": "Angola",
+            "canonical_name": "Angola",
+            "country_code": "AO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2028,
+        "fields": {
+            "name": "Antigua and Barbuda",
+            "canonical_name": "Antigua and Barbuda",
+            "country_code": "AG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2031,
+        "fields": {
+            "name": "Azerbaijan",
+            "canonical_name": "Azerbaijan",
+            "country_code": "AZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2032,
+        "fields": {
+            "name": "Argentina",
+            "canonical_name": "Argentina",
+            "country_code": "AR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2036,
+        "fields": {
+            "name": "Australia",
+            "canonical_name": "Australia",
+            "country_code": "AU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2040,
+        "fields": {
+            "name": "Austria",
+            "canonical_name": "Austria",
+            "country_code": "AT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2044,
+        "fields": {
+            "name": "The Bahamas",
+            "canonical_name": "The Bahamas",
+            "country_code": "BS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2048,
+        "fields": {
+            "name": "Bahrain",
+            "canonical_name": "Bahrain",
+            "country_code": "BH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2050,
+        "fields": {
+            "name": "Bangladesh",
+            "canonical_name": "Bangladesh",
+            "country_code": "BD",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2051,
+        "fields": {
+            "name": "Armenia",
+            "canonical_name": "Armenia",
+            "country_code": "AM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2052,
+        "fields": {
+            "name": "Barbados",
+            "canonical_name": "Barbados",
+            "country_code": "BB",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2056,
+        "fields": {
+            "name": "Belgium",
+            "canonical_name": "Belgium",
+            "country_code": "BE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2064,
+        "fields": {
+            "name": "Bhutan",
+            "canonical_name": "Bhutan",
+            "country_code": "BT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2068,
+        "fields": {
+            "name": "Bolivia",
+            "canonical_name": "Bolivia",
+            "country_code": "BO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2070,
+        "fields": {
+            "name": "Bosnia and Herzegovina",
+            "canonical_name": "Bosnia and Herzegovina",
+            "country_code": "BA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2072,
+        "fields": {
+            "name": "Botswana",
+            "canonical_name": "Botswana",
+            "country_code": "BW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2076,
+        "fields": {
+            "name": "Brazil",
+            "canonical_name": "Brazil",
+            "country_code": "BR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2084,
+        "fields": {
+            "name": "Belize",
+            "canonical_name": "Belize",
+            "country_code": "BZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2090,
+        "fields": {
+            "name": "Solomon Islands",
+            "canonical_name": "Solomon Islands",
+            "country_code": "SB",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2096,
+        "fields": {
+            "name": "Brunei",
+            "canonical_name": "Brunei",
+            "country_code": "BN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2100,
+        "fields": {
+            "name": "Bulgaria",
+            "canonical_name": "Bulgaria",
+            "country_code": "BG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2104,
+        "fields": {
+            "name": "Myanmar (Burma)",
+            "canonical_name": "Myanmar (Burma)",
+            "country_code": "MM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2108,
+        "fields": {
+            "name": "Burundi",
+            "canonical_name": "Burundi",
+            "country_code": "BI",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2112,
+        "fields": {
+            "name": "Belarus",
+            "canonical_name": "Belarus",
+            "country_code": "BY",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2116,
+        "fields": {
+            "name": "Cambodia",
+            "canonical_name": "Cambodia",
+            "country_code": "KH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2120,
+        "fields": {
+            "name": "Cameroon",
+            "canonical_name": "Cameroon",
+            "country_code": "CM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2124,
+        "fields": {
+            "name": "Canada",
+            "canonical_name": "Canada",
+            "country_code": "CA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2132,
+        "fields": {
+            "name": "Cabo Verde",
+            "canonical_name": "Cabo Verde",
+            "country_code": "CV",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2140,
+        "fields": {
+            "name": "Central African Republic",
+            "canonical_name": "Central African Republic",
+            "country_code": "CF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2144,
+        "fields": {
+            "name": "Sri Lanka",
+            "canonical_name": "Sri Lanka",
+            "country_code": "LK",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2148,
+        "fields": {
+            "name": "Chad",
+            "canonical_name": "Chad",
+            "country_code": "TD",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2152,
+        "fields": {
+            "name": "Chile",
+            "canonical_name": "Chile",
+            "country_code": "CL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2156,
+        "fields": {
+            "name": "China",
+            "canonical_name": "China",
+            "country_code": "CN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2162,
+        "fields": {
+            "name": "Christmas Island",
+            "canonical_name": "Christmas Island",
+            "country_code": "CX",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2166,
+        "fields": {
+            "name": "Cocos (Keeling) Islands",
+            "canonical_name": "Cocos (Keeling) Islands",
+            "country_code": "CC",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2170,
+        "fields": {
+            "name": "Colombia",
+            "canonical_name": "Colombia",
+            "country_code": "CO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2174,
+        "fields": {
+            "name": "Comoros",
+            "canonical_name": "Comoros",
+            "country_code": "KM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2178,
+        "fields": {
+            "name": "Republic of the Congo",
+            "canonical_name": "Republic of the Congo",
+            "country_code": "CG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2180,
+        "fields": {
+            "name": "Democratic Republic of the Congo",
+            "canonical_name": "Democratic Republic of the Congo",
+            "country_code": "CD",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2184,
+        "fields": {
+            "name": "Cook Islands",
+            "canonical_name": "Cook Islands",
+            "country_code": "CK",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2188,
+        "fields": {
+            "name": "Costa Rica",
+            "canonical_name": "Costa Rica",
+            "country_code": "CR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2191,
+        "fields": {
+            "name": "Croatia",
+            "canonical_name": "Croatia",
+            "country_code": "HR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2196,
+        "fields": {
+            "name": "Cyprus",
+            "canonical_name": "Cyprus",
+            "country_code": "CY",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2203,
+        "fields": {
+            "name": "Czechia",
+            "canonical_name": "Czechia",
+            "country_code": "CZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2204,
+        "fields": {
+            "name": "Benin",
+            "canonical_name": "Benin",
+            "country_code": "BJ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2208,
+        "fields": {
+            "name": "Denmark",
+            "canonical_name": "Denmark",
+            "country_code": "DK",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2212,
+        "fields": {
+            "name": "Dominica",
+            "canonical_name": "Dominica",
+            "country_code": "DM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2214,
+        "fields": {
+            "name": "Dominican Republic",
+            "canonical_name": "Dominican Republic",
+            "country_code": "DO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2218,
+        "fields": {
+            "name": "Ecuador",
+            "canonical_name": "Ecuador",
+            "country_code": "EC",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2222,
+        "fields": {
+            "name": "El Salvador",
+            "canonical_name": "El Salvador",
+            "country_code": "SV",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2226,
+        "fields": {
+            "name": "Equatorial Guinea",
+            "canonical_name": "Equatorial Guinea",
+            "country_code": "GQ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2231,
+        "fields": {
+            "name": "Ethiopia",
+            "canonical_name": "Ethiopia",
+            "country_code": "ET",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2232,
+        "fields": {
+            "name": "Eritrea",
+            "canonical_name": "Eritrea",
+            "country_code": "ER",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2233,
+        "fields": {
+            "name": "Estonia",
+            "canonical_name": "Estonia",
+            "country_code": "EE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2239,
+        "fields": {
+            "name": "South Georgia and the South Sandwich Islands",
+            "canonical_name": "South Georgia and the South Sandwich Islands",
+            "country_code": "GS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2242,
+        "fields": {
+            "name": "Fiji",
+            "canonical_name": "Fiji",
+            "country_code": "FJ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2246,
+        "fields": {
+            "name": "Finland",
+            "canonical_name": "Finland",
+            "country_code": "FI",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2250,
+        "fields": {
+            "name": "France",
+            "canonical_name": "France",
+            "country_code": "FR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2258,
+        "fields": {
+            "name": "French Polynesia",
+            "canonical_name": "French Polynesia",
+            "country_code": "PF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2260,
+        "fields": {
+            "name": "French Southern and Antarctic Lands",
+            "canonical_name": "French Southern and Antarctic Lands",
+            "country_code": "TF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2262,
+        "fields": {
+            "name": "Djibouti",
+            "canonical_name": "Djibouti",
+            "country_code": "DJ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2266,
+        "fields": {
+            "name": "Gabon",
+            "canonical_name": "Gabon",
+            "country_code": "GA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2268,
+        "fields": {
+            "name": "Georgia",
+            "canonical_name": "Georgia",
+            "country_code": "GE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2270,
+        "fields": {
+            "name": "The Gambia",
+            "canonical_name": "The Gambia",
+            "country_code": "GM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2276,
+        "fields": {
+            "name": "Germany",
+            "canonical_name": "Germany",
+            "country_code": "DE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2288,
+        "fields": {
+            "name": "Ghana",
+            "canonical_name": "Ghana",
+            "country_code": "GH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2296,
+        "fields": {
+            "name": "Kiribati",
+            "canonical_name": "Kiribati",
+            "country_code": "KI",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2300,
+        "fields": {
+            "name": "Greece",
+            "canonical_name": "Greece",
+            "country_code": "GR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2308,
+        "fields": {
+            "name": "Grenada",
+            "canonical_name": "Grenada",
+            "country_code": "GD",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2316,
+        "fields": {
+            "name": "Guam",
+            "canonical_name": "Guam",
+            "country_code": "GU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2320,
+        "fields": {
+            "name": "Guatemala",
+            "canonical_name": "Guatemala",
+            "country_code": "GT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2324,
+        "fields": {
+            "name": "Guinea",
+            "canonical_name": "Guinea",
+            "country_code": "GN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2328,
+        "fields": {
+            "name": "Guyana",
+            "canonical_name": "Guyana",
+            "country_code": "GY",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2332,
+        "fields": {
+            "name": "Haiti",
+            "canonical_name": "Haiti",
+            "country_code": "HT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2334,
+        "fields": {
+            "name": "Heard Island and McDonald Islands",
+            "canonical_name": "Heard Island and McDonald Islands",
+            "country_code": "HM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2336,
+        "fields": {
+            "name": "Vatican City",
+            "canonical_name": "Vatican City",
+            "country_code": "VA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2340,
+        "fields": {
+            "name": "Honduras",
+            "canonical_name": "Honduras",
+            "country_code": "HN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2348,
+        "fields": {
+            "name": "Hungary",
+            "canonical_name": "Hungary",
+            "country_code": "HU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2352,
+        "fields": {
+            "name": "Iceland",
+            "canonical_name": "Iceland",
+            "country_code": "IS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2356,
+        "fields": {
+            "name": "India",
+            "canonical_name": "India",
+            "country_code": "IN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2360,
+        "fields": {
+            "name": "Indonesia",
+            "canonical_name": "Indonesia",
+            "country_code": "ID",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2368,
+        "fields": {
+            "name": "Iraq",
+            "canonical_name": "Iraq",
+            "country_code": "IQ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2372,
+        "fields": {
+            "name": "Ireland",
+            "canonical_name": "Ireland",
+            "country_code": "IE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2376,
+        "fields": {
+            "name": "Israel",
+            "canonical_name": "Israel",
+            "country_code": "IL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2380,
+        "fields": {
+            "name": "Italy",
+            "canonical_name": "Italy",
+            "country_code": "IT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2384,
+        "fields": {
+            "name": "Cote d'Ivoire",
+            "canonical_name": "Cote d'Ivoire",
+            "country_code": "CI",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2388,
+        "fields": {
+            "name": "Jamaica",
+            "canonical_name": "Jamaica",
+            "country_code": "JM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2392,
+        "fields": {
+            "name": "Japan",
+            "canonical_name": "Japan",
+            "country_code": "JP",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2398,
+        "fields": {
+            "name": "Kazakhstan",
+            "canonical_name": "Kazakhstan",
+            "country_code": "KZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2400,
+        "fields": {
+            "name": "Jordan",
+            "canonical_name": "Jordan",
+            "country_code": "JO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2404,
+        "fields": {
+            "name": "Kenya",
+            "canonical_name": "Kenya",
+            "country_code": "KE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2410,
+        "fields": {
+            "name": "South Korea",
+            "canonical_name": "South Korea",
+            "country_code": "KR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2414,
+        "fields": {
+            "name": "Kuwait",
+            "canonical_name": "Kuwait",
+            "country_code": "KW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2417,
+        "fields": {
+            "name": "Kyrgyzstan",
+            "canonical_name": "Kyrgyzstan",
+            "country_code": "KG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2418,
+        "fields": {
+            "name": "Laos",
+            "canonical_name": "Laos",
+            "country_code": "LA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2422,
+        "fields": {
+            "name": "Lebanon",
+            "canonical_name": "Lebanon",
+            "country_code": "LB",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2426,
+        "fields": {
+            "name": "Lesotho",
+            "canonical_name": "Lesotho",
+            "country_code": "LS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2428,
+        "fields": {
+            "name": "Latvia",
+            "canonical_name": "Latvia",
+            "country_code": "LV",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2430,
+        "fields": {
+            "name": "Liberia",
+            "canonical_name": "Liberia",
+            "country_code": "LR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2434,
+        "fields": {
+            "name": "Libya",
+            "canonical_name": "Libya",
+            "country_code": "LY",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2438,
+        "fields": {
+            "name": "Liechtenstein",
+            "canonical_name": "Liechtenstein",
+            "country_code": "LI",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2440,
+        "fields": {
+            "name": "Lithuania",
+            "canonical_name": "Lithuania",
+            "country_code": "LT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2442,
+        "fields": {
+            "name": "Luxembourg",
+            "canonical_name": "Luxembourg",
+            "country_code": "LU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2450,
+        "fields": {
+            "name": "Madagascar",
+            "canonical_name": "Madagascar",
+            "country_code": "MG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2454,
+        "fields": {
+            "name": "Malawi",
+            "canonical_name": "Malawi",
+            "country_code": "MW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2458,
+        "fields": {
+            "name": "Malaysia",
+            "canonical_name": "Malaysia",
+            "country_code": "MY",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2462,
+        "fields": {
+            "name": "Maldives",
+            "canonical_name": "Maldives",
+            "country_code": "MV",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2466,
+        "fields": {
+            "name": "Mali",
+            "canonical_name": "Mali",
+            "country_code": "ML",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2470,
+        "fields": {
+            "name": "Malta",
+            "canonical_name": "Malta",
+            "country_code": "MT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2478,
+        "fields": {
+            "name": "Mauritania",
+            "canonical_name": "Mauritania",
+            "country_code": "MR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2480,
+        "fields": {
+            "name": "Mauritius",
+            "canonical_name": "Mauritius",
+            "country_code": "MU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2484,
+        "fields": {
+            "name": "Mexico",
+            "canonical_name": "Mexico",
+            "country_code": "MX",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2492,
+        "fields": {
+            "name": "Monaco",
+            "canonical_name": "Monaco",
+            "country_code": "MC",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2496,
+        "fields": {
+            "name": "Mongolia",
+            "canonical_name": "Mongolia",
+            "country_code": "MN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2498,
+        "fields": {
+            "name": "Moldova",
+            "canonical_name": "Moldova",
+            "country_code": "MD",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2499,
+        "fields": {
+            "name": "Montenegro",
+            "canonical_name": "Montenegro",
+            "country_code": "ME",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2504,
+        "fields": {
+            "name": "Morocco",
+            "canonical_name": "Morocco",
+            "country_code": "MA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2508,
+        "fields": {
+            "name": "Mozambique",
+            "canonical_name": "Mozambique",
+            "country_code": "MZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2512,
+        "fields": {
+            "name": "Oman",
+            "canonical_name": "Oman",
+            "country_code": "OM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2516,
+        "fields": {
+            "name": "Namibia",
+            "canonical_name": "Namibia",
+            "country_code": "",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2520,
+        "fields": {
+            "name": "Nauru",
+            "canonical_name": "Nauru",
+            "country_code": "NR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2524,
+        "fields": {
+            "name": "Nepal",
+            "canonical_name": "Nepal",
+            "country_code": "NP",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2528,
+        "fields": {
+            "name": "Netherlands",
+            "canonical_name": "Netherlands",
+            "country_code": "NL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2531,
+        "fields": {
+            "name": "Curacao",
+            "canonical_name": "Curacao",
+            "country_code": "CW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2534,
+        "fields": {
+            "name": "Sint Maarten",
+            "canonical_name": "Sint Maarten",
+            "country_code": "SX",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2535,
+        "fields": {
+            "name": "Caribbean Netherlands",
+            "canonical_name": "Caribbean Netherlands",
+            "country_code": "BQ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2540,
+        "fields": {
+            "name": "New Caledonia",
+            "canonical_name": "New Caledonia",
+            "country_code": "NC",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2548,
+        "fields": {
+            "name": "Vanuatu",
+            "canonical_name": "Vanuatu",
+            "country_code": "VU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2554,
+        "fields": {
+            "name": "New Zealand",
+            "canonical_name": "New Zealand",
+            "country_code": "NZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2558,
+        "fields": {
+            "name": "Nicaragua",
+            "canonical_name": "Nicaragua",
+            "country_code": "NI",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2562,
+        "fields": {
+            "name": "Niger",
+            "canonical_name": "Niger",
+            "country_code": "NE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2566,
+        "fields": {
+            "name": "Nigeria",
+            "canonical_name": "Nigeria",
+            "country_code": "NG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2570,
+        "fields": {
+            "name": "Niue",
+            "canonical_name": "Niue",
+            "country_code": "NU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2574,
+        "fields": {
+            "name": "Norfolk Island",
+            "canonical_name": "Norfolk Island",
+            "country_code": "NF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2578,
+        "fields": {
+            "name": "Norway",
+            "canonical_name": "Norway",
+            "country_code": "NO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2580,
+        "fields": {
+            "name": "Northern Mariana Islands",
+            "canonical_name": "Northern Mariana Islands",
+            "country_code": "MP",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2581,
+        "fields": {
+            "name": "United States Minor Outlying Islands",
+            "canonical_name": "United States Minor Outlying Islands",
+            "country_code": "UM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2583,
+        "fields": {
+            "name": "Micronesia",
+            "canonical_name": "Micronesia",
+            "country_code": "FM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2584,
+        "fields": {
+            "name": "Marshall Islands",
+            "canonical_name": "Marshall Islands",
+            "country_code": "MH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2585,
+        "fields": {
+            "name": "Palau",
+            "canonical_name": "Palau",
+            "country_code": "PW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2586,
+        "fields": {
+            "name": "Pakistan",
+            "canonical_name": "Pakistan",
+            "country_code": "PK",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2591,
+        "fields": {
+            "name": "Panama",
+            "canonical_name": "Panama",
+            "country_code": "PA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2598,
+        "fields": {
+            "name": "Papua New Guinea",
+            "canonical_name": "Papua New Guinea",
+            "country_code": "PG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2600,
+        "fields": {
+            "name": "Paraguay",
+            "canonical_name": "Paraguay",
+            "country_code": "PY",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2604,
+        "fields": {
+            "name": "Peru",
+            "canonical_name": "Peru",
+            "country_code": "PE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2608,
+        "fields": {
+            "name": "Philippines",
+            "canonical_name": "Philippines",
+            "country_code": "PH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2612,
+        "fields": {
+            "name": "Pitcairn Islands",
+            "canonical_name": "Pitcairn Islands",
+            "country_code": "PN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2616,
+        "fields": {
+            "name": "Poland",
+            "canonical_name": "Poland",
+            "country_code": "PL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2620,
+        "fields": {
+            "name": "Portugal",
+            "canonical_name": "Portugal",
+            "country_code": "PT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2624,
+        "fields": {
+            "name": "Guinea-Bissau",
+            "canonical_name": "Guinea-Bissau",
+            "country_code": "GW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2626,
+        "fields": {
+            "name": "Timor-Leste",
+            "canonical_name": "Timor-Leste",
+            "country_code": "TL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2634,
+        "fields": {
+            "name": "Qatar",
+            "canonical_name": "Qatar",
+            "country_code": "QA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2642,
+        "fields": {
+            "name": "Romania",
+            "canonical_name": "Romania",
+            "country_code": "RO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2643,
+        "fields": {
+            "name": "Russia",
+            "canonical_name": "Russia",
+            "country_code": "RU",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2646,
+        "fields": {
+            "name": "Rwanda",
+            "canonical_name": "Rwanda",
+            "country_code": "RW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2652,
+        "fields": {
+            "name": "Saint Barthelemy",
+            "canonical_name": "Saint Barthelemy",
+            "country_code": "BL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2654,
+        "fields": {
+            "name": "Saint Helena, Ascension and Tristan da Cunha",
+            "canonical_name": "Saint Helena, Ascension and Tristan da Cunha",
+            "country_code": "SH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2659,
+        "fields": {
+            "name": "Saint Kitts and Nevis",
+            "canonical_name": "Saint Kitts and Nevis",
+            "country_code": "KN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2662,
+        "fields": {
+            "name": "Saint Lucia",
+            "canonical_name": "Saint Lucia",
+            "country_code": "LC",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2663,
+        "fields": {
+            "name": "Saint Martin",
+            "canonical_name": "Saint Martin",
+            "country_code": "MF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2666,
+        "fields": {
+            "name": "Saint Pierre and Miquelon",
+            "canonical_name": "Saint Pierre and Miquelon",
+            "country_code": "PM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2670,
+        "fields": {
+            "name": "Saint Vincent and the Grenadines",
+            "canonical_name": "Saint Vincent and the Grenadines",
+            "country_code": "VC",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2674,
+        "fields": {
+            "name": "San Marino",
+            "canonical_name": "San Marino",
+            "country_code": "SM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2678,
+        "fields": {
+            "name": "Sao Tome and Principe",
+            "canonical_name": "Sao Tome and Principe",
+            "country_code": "ST",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2682,
+        "fields": {
+            "name": "Saudi Arabia",
+            "canonical_name": "Saudi Arabia",
+            "country_code": "SA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2686,
+        "fields": {
+            "name": "Senegal",
+            "canonical_name": "Senegal",
+            "country_code": "SN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2688,
+        "fields": {
+            "name": "Serbia",
+            "canonical_name": "Serbia",
+            "country_code": "RS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2690,
+        "fields": {
+            "name": "Seychelles",
+            "canonical_name": "Seychelles",
+            "country_code": "SC",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2694,
+        "fields": {
+            "name": "Sierra Leone",
+            "canonical_name": "Sierra Leone",
+            "country_code": "SL",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2702,
+        "fields": {
+            "name": "Singapore",
+            "canonical_name": "Singapore",
+            "country_code": "SG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2703,
+        "fields": {
+            "name": "Slovakia",
+            "canonical_name": "Slovakia",
+            "country_code": "SK",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2704,
+        "fields": {
+            "name": "Vietnam",
+            "canonical_name": "Vietnam",
+            "country_code": "VN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2705,
+        "fields": {
+            "name": "Slovenia",
+            "canonical_name": "Slovenia",
+            "country_code": "SI",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2706,
+        "fields": {
+            "name": "Somalia",
+            "canonical_name": "Somalia",
+            "country_code": "SO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2710,
+        "fields": {
+            "name": "South Africa",
+            "canonical_name": "South Africa",
+            "country_code": "ZA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2716,
+        "fields": {
+            "name": "Zimbabwe",
+            "canonical_name": "Zimbabwe",
+            "country_code": "ZW",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2724,
+        "fields": {
+            "name": "Spain",
+            "canonical_name": "Spain",
+            "country_code": "ES",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2728,
+        "fields": {
+            "name": "South Sudan",
+            "canonical_name": "South Sudan",
+            "country_code": "SS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2736,
+        "fields": {
+            "name": "Sudan",
+            "canonical_name": "Sudan",
+            "country_code": "SD",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2740,
+        "fields": {
+            "name": "Suriname",
+            "canonical_name": "Suriname",
+            "country_code": "SR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2748,
+        "fields": {
+            "name": "Eswatini",
+            "canonical_name": "Eswatini",
+            "country_code": "SZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2752,
+        "fields": {
+            "name": "Sweden",
+            "canonical_name": "Sweden",
+            "country_code": "SE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2756,
+        "fields": {
+            "name": "Switzerland",
+            "canonical_name": "Switzerland",
+            "country_code": "CH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2762,
+        "fields": {
+            "name": "Tajikistan",
+            "canonical_name": "Tajikistan",
+            "country_code": "TJ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2764,
+        "fields": {
+            "name": "Thailand",
+            "canonical_name": "Thailand",
+            "country_code": "TH",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2768,
+        "fields": {
+            "name": "Togo",
+            "canonical_name": "Togo",
+            "country_code": "TG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2772,
+        "fields": {
+            "name": "Tokelau",
+            "canonical_name": "Tokelau",
+            "country_code": "TK",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2776,
+        "fields": {
+            "name": "Tonga",
+            "canonical_name": "Tonga",
+            "country_code": "TO",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2780,
+        "fields": {
+            "name": "Trinidad and Tobago",
+            "canonical_name": "Trinidad and Tobago",
+            "country_code": "TT",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2784,
+        "fields": {
+            "name": "United Arab Emirates",
+            "canonical_name": "United Arab Emirates",
+            "country_code": "AE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2788,
+        "fields": {
+            "name": "Tunisia",
+            "canonical_name": "Tunisia",
+            "country_code": "TN",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2792,
+        "fields": {
+            "name": "Turkiye",
+            "canonical_name": "Turkiye",
+            "country_code": "TR",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2795,
+        "fields": {
+            "name": "Turkmenistan",
+            "canonical_name": "Turkmenistan",
+            "country_code": "TM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2798,
+        "fields": {
+            "name": "Tuvalu",
+            "canonical_name": "Tuvalu",
+            "country_code": "TV",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2800,
+        "fields": {
+            "name": "Uganda",
+            "canonical_name": "Uganda",
+            "country_code": "UG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2804,
+        "fields": {
+            "name": "Ukraine",
+            "canonical_name": "Ukraine",
+            "country_code": "UA",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2807,
+        "fields": {
+            "name": "North Macedonia",
+            "canonical_name": "North Macedonia",
+            "country_code": "MK",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2818,
+        "fields": {
+            "name": "Egypt",
+            "canonical_name": "Egypt",
+            "country_code": "EG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2826,
+        "fields": {
+            "name": "United Kingdom",
+            "canonical_name": "United Kingdom",
+            "country_code": "GB",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2831,
+        "fields": {
+            "name": "Guernsey",
+            "canonical_name": "Guernsey",
+            "country_code": "GG",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2832,
+        "fields": {
+            "name": "Jersey",
+            "canonical_name": "Jersey",
+            "country_code": "JE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2833,
+        "fields": {
+            "name": "Isle of Man",
+            "canonical_name": "Isle of Man",
+            "country_code": "IM",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2834,
+        "fields": {
+            "name": "Tanzania",
+            "canonical_name": "Tanzania",
+            "country_code": "TZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2840,
+        "fields": {
+            "name": "United States",
+            "canonical_name": "United States",
+            "country_code": "US",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2854,
+        "fields": {
+            "name": "Burkina Faso",
+            "canonical_name": "Burkina Faso",
+            "country_code": "BF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2858,
+        "fields": {
+            "name": "Uruguay",
+            "canonical_name": "Uruguay",
+            "country_code": "UY",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2860,
+        "fields": {
+            "name": "Uzbekistan",
+            "canonical_name": "Uzbekistan",
+            "country_code": "UZ",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2862,
+        "fields": {
+            "name": "Venezuela",
+            "canonical_name": "Venezuela",
+            "country_code": "VE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2876,
+        "fields": {
+            "name": "Wallis and Futuna",
+            "canonical_name": "Wallis and Futuna",
+            "country_code": "WF",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2882,
+        "fields": {
+            "name": "Samoa",
+            "canonical_name": "Samoa",
+            "country_code": "WS",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2887,
+        "fields": {
+            "name": "Yemen",
+            "canonical_name": "Yemen",
+            "country_code": "YE",
+            "status": "Active"
+        }
+    },
+    {
+        "model": "regions.region",
+        "pk": 2894,
+        "fields": {
+            "name": "Zambia",
+            "canonical_name": "Zambia",
+            "country_code": "ZM",
+            "status": "Active"
+        }
+    }
+]
