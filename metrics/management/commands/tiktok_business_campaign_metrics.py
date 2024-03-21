@@ -1,4 +1,5 @@
 from datetime import datetime
+from paths import TIKTOK_BUSINESS_CONFIG
 
 from django.core.management.base import BaseCommand
 
@@ -12,7 +13,12 @@ class Command(BaseCommand):
     help = "Load tiktok business campaigns' metrics to the database"
 
     def add_arguments(self, parser):
-        parser.add_argument("config", type=str)
+        parser.add_argument(
+            "-cfg",
+            "--config",
+            type=str,
+            default=TIKTOK_BUSINESS_CONFIG,
+        )
 
     def handle(self, *args, **options):
         self.datetime = datetime.now()

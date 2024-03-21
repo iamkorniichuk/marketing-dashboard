@@ -1,10 +1,11 @@
 import json
 import requests
 import pandas as pd
+from paths import CROSSROADS_CONFIG
 
 
 class CrossroadsApiClient:
-    def __init__(self, crossroads_config: str):
+    def __init__(self, crossroads_config: str = CROSSROADS_CONFIG):
         with open(crossroads_config) as file:
             self.credentials = json.load(file)
         self.base_url = "https://crossroads.domainactive.com/api/v2/"

@@ -1,4 +1,5 @@
 from datetime import datetime
+from paths import CROSSROADS_CONFIG
 
 from django.core.management.base import BaseCommand
 
@@ -12,7 +13,12 @@ class Command(BaseCommand):
     help = "Load crossroads campaigns' metrics to the database"
 
     def add_arguments(self, parser):
-        parser.add_argument("config", type=str)
+        parser.add_argument(
+            "-cfg",
+            "--config",
+            type=str,
+            default=CROSSROADS_CONFIG,
+        )
 
     def handle(self, *args, **options):
         self.datetime = datetime.now()

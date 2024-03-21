@@ -2,13 +2,14 @@ import json
 import requests
 import pandas as pd
 from urllib import parse
+from paths import TIKTOK_BUSINESS_CONFIG
 
 from business_api_client.api import AdApi, AuthenticationApi, ReportingApi
 from business_api_client.api_client import ApiClient
 
 
 class TiktokBusinessApiClient:
-    def __init__(self, tiktok_business_config: str):
+    def __init__(self, tiktok_business_config: str = TIKTOK_BUSINESS_CONFIG):
         with open(tiktok_business_config) as file:
             self.credentials = json.load(file)
         self.api_client = ApiClient()

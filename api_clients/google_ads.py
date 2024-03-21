@@ -2,12 +2,17 @@ import json
 from typing import Iterable
 from datetime import datetime
 import pandas as pd
+from paths import GOOGLE_ADS_CONFIG, KEYWORD_REQUEST_CONFIG
 
 from google.ads.googleads.client import GoogleAdsClient
 
 
 class GoogleAdsApiClient:
-    def __init__(self, google_ads_config: str, request_config: str):
+    def __init__(
+        self,
+        google_ads_config: str = GOOGLE_ADS_CONFIG,
+        request_config: str = KEYWORD_REQUEST_CONFIG,
+    ):
         self.api_client = GoogleAdsClient.load_from_storage(google_ads_config)
         with open(request_config) as file:
             self.request_config = json.load(file)

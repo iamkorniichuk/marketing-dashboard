@@ -3,11 +3,7 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.db.models import Exists, OuterRef
 
-from api_clients import TiktokBusinessApiClient
-from campaigns.models import (
-    TiktokBusinessCampaign,
-    CrossroadsToTiktokBusinessIdentifiers,
-)
+from campaigns.models import CrossroadsToTiktokBusinessIdentifiers
 
 from metrics.models import (
     TiktokBusinessCampaignMetrics,
