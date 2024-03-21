@@ -79,26 +79,3 @@ class CampaignMetrics(models.Model):
         related_name="all_campaign_metrics",
     )
     date = models.DateField()
-
-
-class CrossroadsKeywordMetrics(models.Model):
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=["campaign", "lander_keyword", "date"],
-                name="unique_crossroads_keywords_metrics_for_date",
-            )
-        ]
-        verbose_name_plural = "Crossroads Keyword Metrics"
-
-    campaign = models.ForeignKey(
-        CrossroadsCampaign,
-        on_delete=models.PROTECT,
-        related_name="keyword_metrics",
-    )
-    lander_keyword = models.CharField(max_length=128)
-    clicks = models.IntegerField()
-    date = models.DateField()
-
-    def __str__(self):
-        return self.lander_keyword
