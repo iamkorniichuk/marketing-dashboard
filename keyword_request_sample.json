@@ -1,5 +1,6 @@
 {
   "language_id": "1000",
   "customer_id": "1231231234",
-  "include_adult_keywords": true
+  "include_adult_keywords": true,
+  "dollars_per_day": 100
 }
