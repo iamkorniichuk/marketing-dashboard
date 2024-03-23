@@ -51,3 +51,38 @@ class GoogleAdsHistoricalKeywordMetrics(models.Model):
     partners_low_page_bid = models.FloatField()
     high_page_bid = models.FloatField()
     partners_high_page_bid = models.FloatField()
+
+
+class GoogleAdsForecastKeywordMetrics(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["keyword", "start_date", "end_date"],
+                name="unique_google_ads_forecast_keyword_metrics_for_date",
+            )
+        ]
+        verbose_name_plural = "Google Ads Forecast Keyword Metrics"
+
+    keyword = models.ForeignKey(
+        GoogleAdsKeyword,
+        on_delete=models.PROTECT,
+        related_name="forecast_metrics",
+    )
+    start_date = models.DateField()
+    end_date = models.DateField()
+    impressions = models.FloatField()
+    partners_impressions = models.FloatField()
+    ctr = models.FloatField()
+    partners_ctr = models.FloatField()
+    average_cpc = models.FloatField()
+    partners_average_cpc = models.FloatField()
+    clicks = models.FloatField()
+    partners_clicks = models.FloatField()
+    cost = models.FloatField()
+    partners_cost = models.FloatField()
+    conversions = models.FloatField()
+    partners_conversions = models.FloatField()
+    conversion_rate = models.FloatField()
+    partners_conversion_rate = models.FloatField()
+    average_cpa = models.FloatField()
+    partners_average_cpa = models.FloatField()

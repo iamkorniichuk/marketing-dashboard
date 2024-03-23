@@ -3,7 +3,11 @@ from .campaign import (
     TiktokBusinessCampaignMetrics,
     CampaignMetrics,
 )
-from .keyword import CrossroadsKeywordMetrics, GoogleAdsHistoricalKeywordMetrics
+from .keyword import (
+    CrossroadsKeywordMetrics,
+    GoogleAdsHistoricalKeywordMetrics,
+    GoogleAdsForecastKeywordMetrics,
+)
 
 __all__ = [
     "CrossroadsCampaignMetrics",
@@ -11,4 +15,5 @@ __all__ = [
     "CampaignMetrics",
     "CrossroadsKeywordMetrics",
     "GoogleAdsHistoricalKeywordMetrics",
+    "GoogleAdsForecastKeywordMetrics",
 ]
