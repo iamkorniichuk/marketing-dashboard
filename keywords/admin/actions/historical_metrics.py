@@ -2,7 +2,6 @@ from datetime import datetime
 from django.contrib import admin
 
 from metrics.models import GoogleAdsHistoricalKeywordMetrics
-from keywords.models import GoogleAdsKeyword
 
 from api_clients.google_ads import GoogleAdsApiClient
 
@@ -64,16 +63,3 @@ def request_historical_metrics(modeladmin, request, queryset):
             "partners_high_page_bid",
         ],
     )
-
-
-@admin.register(GoogleAdsKeyword)
-class GoogleAdsKeywordAdmin(admin.ModelAdmin):
-    list_filter = ["text"]
-    list_display = ["text", "get_regions_names"]
-    actions = [request_historical_metrics]
-
-    def get_regions_names(self, obj):
-        regions_names = obj.regions.values_list("name", flat=True)
-        return ", ".join(regions_names)
-
-    get_regions_names.short_description = "Regions"
