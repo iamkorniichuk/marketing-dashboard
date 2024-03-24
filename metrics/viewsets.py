@@ -1,10 +1,16 @@
 from rest_framework.viewsets import ModelViewSet
 
-from metrics.serializers import (
+from metrics.models import (
     CampaignMetrics,
-    CampaignMetricsSerializer,
     CrossroadsKeywordMetrics,
+    GoogleAdsHistoricalKeywordMetrics,
+    GoogleAdsForecastKeywordMetrics,
+)
+from metrics.serializers import (
+    CampaignMetricsSerializer,
     CrossroadsKeywordMetricsSerializer,
+    GoogleAdsHistoricalKeywordMetricsSerializer,
+    GoogleAdsForecastKeywordMetricsSerializer,
 )
 
 
@@ -30,4 +36,25 @@ class CrossroadsKeywordMetricsViewSet(ModelViewSet):
         "campaign__name",
         "campaign__id",
         "lander_keyword",
+    ]
+
+
+class GoogleAdsHistoricalKeywordMetricsViewSet(ModelViewSet):
+    queryset = GoogleAdsHistoricalKeywordMetrics.objects.all()
+    serializer_class = GoogleAdsHistoricalKeywordMetricsSerializer
+    filterset_fields = [
+        "id",
+        "date",
+        "keyword__text",
+    ]
+
+
+class GoogleAdsForecastKeywordMetricsViewSet(ModelViewSet):
+    queryset = GoogleAdsForecastKeywordMetrics.objects.all()
+    serializer_class = GoogleAdsForecastKeywordMetricsSerializer
+    filterset_fields = [
+        "id",
+        "start_date",
+        "end_date",
+        "keyword__text",
     ]

@@ -12,7 +12,11 @@ from metrics.models import (
     CrossroadsCampaignMetrics,
     CampaignMetrics,
     CrossroadsKeywordMetrics,
+    GoogleAdsHistoricalKeywordMetrics,
+    GoogleAdsForecastKeywordMetrics,
 )
+from keywords.models import GoogleAdsKeyword
+from keywords.serializers import GoogleAdsKeywordSerializer
 
 
 class TiktokBusinessCampaignMetricsSerializer(serializers.ModelSerializer):
@@ -60,4 +64,26 @@ class CrossroadsKeywordMetricsSerializer(serializers.ModelSerializer):
     campaign = RepresentativePkRelatedField(
         queryset=CrossroadsCampaign.objects.all(),
         serializer_class=CrossroadsCampaignSerializer,
+    )
+
+
+class GoogleAdsHistoricalKeywordMetricsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoogleAdsHistoricalKeywordMetrics
+        fields = "__all__"
+
+    keyword = RepresentativePkRelatedField(
+        queryset=GoogleAdsKeyword.objects.all(),
+        serializer_class=GoogleAdsKeywordSerializer,
+    )
+
+
+class GoogleAdsForecastKeywordMetricsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoogleAdsForecastKeywordMetrics
+        fields = "__all__"
+
+    keyword = RepresentativePkRelatedField(
+        queryset=GoogleAdsKeyword.objects.all(),
+        serializer_class=GoogleAdsKeywordSerializer,
     )

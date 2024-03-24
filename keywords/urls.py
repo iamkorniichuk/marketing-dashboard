@@ -7,6 +7,8 @@ from keywords.viewsets import GoogleAdsKeywordViewSet
 router = DefaultRouter()
 router.register("google_ads", GoogleAdsKeywordViewSet, basename="google-ads")
 
+app_name = "keywords"
+
 urlpatterns = [
     path("", include(router.urls)),
 ]
