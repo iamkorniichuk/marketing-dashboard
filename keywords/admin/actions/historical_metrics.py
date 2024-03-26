@@ -20,11 +20,9 @@ def request_historical_metrics(modeladmin, request, queryset):
             regions_keyword[regions] = [obj.text]
 
     data = []
-    import time
 
     for regions, keywords in regions_keyword.items():
         response = api_client.request_historical_keywords_metrics(keywords, regions)
-        time.sleep(5)
         data.extend(response)
 
     today = datetime.now()

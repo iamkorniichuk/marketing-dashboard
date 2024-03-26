@@ -1,7 +1,8 @@
-import time
 from typing import Iterable
 from datetime import datetime
 import pandas as pd
+
+from .utils import safe_google_request
 
 
 class GoogleAdsKeywordClient:
@@ -37,6 +38,7 @@ class GoogleAdsKeywordClient:
         )
         return dataframe.to_dict("records")
 
+    @safe_google_request
     def request_one_level_historical_keywords_metrics(
         self,
         keywords: Iterable[str],
@@ -102,7 +104,6 @@ class GoogleAdsKeywordClient:
                     is_partners_included=True,
                 )
             )
-            time.sleep(5)
 
         solo_dataframe = pd.DataFrame(solo_responses)
         partners_dataframe = pd.DataFrame(partners_responses)
@@ -117,6 +118,7 @@ class GoogleAdsKeywordClient:
 
         return dataframe.to_dict("records")
 
+    @safe_google_request
     def request_one_level_forecast_keywords_metrics(
         self,
         keyword: str,
