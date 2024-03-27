@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "drf_yasg",
     "django_filters",
+    "commons",
     "campaigns",
     "keywords",
     "metrics",

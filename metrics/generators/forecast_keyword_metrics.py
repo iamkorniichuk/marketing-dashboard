@@ -1,6 +1,10 @@
 from datetime import datetime, timedelta
-from django.contrib import admin
+from typing import Iterable
+from django.db.models import QuerySet
+from commons.models import filter_contains_all
 
+from keywords.models import GoogleAdsKeyword
+from keywords.utils import extract_regions_groups
 from metrics.models import GoogleAdsForecastKeywordMetrics
 
 from api_clients.google_ads import GoogleAdsApiClient
@@ -9,20 +13,21 @@ from api_clients.google_ads import GoogleAdsApiClient
 api_client = GoogleAdsApiClient()
 
 
-@admin.action(description="Request forecast metrics")
-def request_forecast_metrics(modeladmin, request, queryset):
-    regions_keyword = {}
-    for obj in queryset.all():
-        regions = tuple(obj.regions.values_list("id", flat=True))
-        try:
-            regions_keyword[regions].append(obj.text)
-        except KeyError:
-            regions_keyword[regions] = [obj.text]
+def generate_forecast_metrics(
+    queryset: QuerySet[GoogleAdsKeyword],
+    start_date=None,
+    end_date=None,
+) -> Iterable[GoogleAdsForecastKeywordMetrics]:
+    if not start_date:
+        start_date = datetime.now() + timedelta(days=1)
 
-    start_date = datetime.now() + timedelta(days=1)
-    end_date = start_date + timedelta(weeks=2)
+    if not end_date:
+        end_date = start_date + timedelta(weeks=2)
+
+    regions_groups = extract_regions_groups(queryset)
+
     data = []
-    for regions, keywords in regions_keyword.items():
+    for regions, keywords in regions_groups.items():
         response = api_client.request_forecast_keywords_metrics(
             keywords,
             regions,
@@ -33,9 +38,8 @@ def request_forecast_metrics(modeladmin, request, queryset):
 
     metrics = []
     for row in data:
-        keyword = queryset.filter(text__iexact=row["keyword"])
-        for region_id in row["region_ids"]:
-            keyword = keyword.filter(regions__id=region_id)
+        exact_keywords = queryset.filter(text__iexact=row["keyword"])
+        keyword = filter_contains_all(exact_keywords, regions=row["region_ids"])
 
         metrics.append(
             GoogleAdsForecastKeywordMetrics(
@@ -60,26 +64,5 @@ def request_forecast_metrics(modeladmin, request, queryset):
                 partners_average_cpa=row["avg_cpa_partners"],
             )
         )
-    GoogleAdsForecastKeywordMetrics.objects.bulk_create(
-        metrics,
-        update_conflicts=True,
-        unique_fields=["keyword", "start_date", "end_date"],
-        update_fields=[
-            "impressions",
-            "partners_impressions",
-            "ctr",
-            "partners_ctr",
-            "average_cpc",
-            "partners_average_cpc",
-            "clicks",
-            "partners_clicks",
-            "cost",
-            "partners_cost",
-            "conversions",
-            "partners_conversions",
-            "conversion_rate",
-            "partners_conversion_rate",
-            "average_cpa",
-            "partners_average_cpa",
-        ],
-    )
+
+    return metrics
