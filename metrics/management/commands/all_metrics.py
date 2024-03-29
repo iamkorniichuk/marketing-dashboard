@@ -17,12 +17,14 @@ class Command(BaseCommand):
         parser.add_argument(
             "-cr_cfg",
             "--crossroads_config",
+            dest="crossroads_config",
             type=str,
             default=CROSSROADS_CONFIG,
         )
         parser.add_argument(
             "-tt_b_cfg",
             "--tiktok-business_config",
+            dest="tiktok_business_config",
             type=str,
             default=TIKTOK_BUSINESS_CONFIG,
         )
@@ -30,14 +32,20 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         call_command(
             crossroads_campaign_metrics.Command(),
-            options["crossroads_config"],
+            config=options["crossroads_config"],
         )
         call_command(
             tiktok_business_campaign_metrics.Command(),
-            options["tiktok_business_config"],
+            config=options["tiktok_business_config"],
         )
 
-        call_command(campaign_identifiers.Command(), options["tiktok"])
+        call_command(
+            campaign_identifiers.Command(),
+            config=options["tiktok_business_config"],
+        )
         call_command(merge_campaign_metrics.Command())
 
-        call_command(crossroads_keyword_metrics.Command(), options["crossroads"])
+        call_command(
+            crossroads_keyword_metrics.Command(),
+            config=options["crossroads_config"],
+        )

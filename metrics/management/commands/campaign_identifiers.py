@@ -19,6 +19,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "-cfg",
             "--config",
+            dest="config",
             type=str,
             default=TIKTOK_BUSINESS_CONFIG,
         )
