@@ -1,6 +1,23 @@
 from django.contrib import admin
+from commons.admin import get_all_fieldnames
 
-from metrics.models import CampaignMetrics
+from metrics.models import (
+    CampaignMetrics,
+    CrossroadsCampaignMetrics,
+    TiktokBusinessCampaignMetrics,
+)
+
+
+@admin.register(CrossroadsCampaignMetrics)
+class CrossroadsCampaignMetricsAdmin(admin.ModelAdmin):
+    list_filter = ["campaign__name"]
+    list_display = get_all_fieldnames(CrossroadsCampaignMetrics)
+
+
+@admin.register(TiktokBusinessCampaignMetrics)
+class TiktokBusinessCampaignMetricsAdmin(admin.ModelAdmin):
+    list_filter = ["campaign__name"]
+    list_display = get_all_fieldnames(TiktokBusinessCampaignMetrics)
 
 
 @admin.register(CampaignMetrics)
@@ -54,7 +71,7 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_identifier(self, obj):
         return obj.crossroads_metrics.campaign.id
 
-    get_crossroads_identifier.short_description = "Crossroads Id"
+    get_crossroads_identifier.short_description = "CR Id"
     get_crossroads_identifier.admin_order_field = "crossroads_metrics__campaign__id"
 
     def get_tiktok_business_advertiser_id(self, obj):
@@ -74,7 +91,7 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_date(self, obj):
         return obj.crossroads_metrics.date
 
-    get_crossroads_date.short_description = "Crossroads Date"
+    get_crossroads_date.short_description = "CR Date"
     get_crossroads_date.admin_order_field = "crossroads_metrics__date"
 
     def get_tiktok_business_video_views_p25(self, obj):
@@ -152,7 +169,7 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_revenue(self, obj):
         return obj.crossroads_metrics.revenue
 
-    get_crossroads_revenue.short_description = "Crossroads Revenue"
+    get_crossroads_revenue.short_description = "CR Revenue"
     get_crossroads_revenue.admin_order_field = "crossroads_metrics__revenue"
 
     def get_tiktok_business_conversion(self, obj):
@@ -174,19 +191,19 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_rpc(self, obj):
         return obj.crossroads_metrics.rpc
 
-    get_crossroads_rpc.short_description = "Crossroads RPC"
+    get_crossroads_rpc.short_description = "CR RPC"
     get_crossroads_rpc.admin_order_field = "crossroads_metrics__rpc"
 
     def get_crossroads_rpv(self, obj):
         return obj.crossroads_metrics.rpv
 
-    get_crossroads_rpv.short_description = "Crossroads RPV"
+    get_crossroads_rpv.short_description = "CR RPV"
     get_crossroads_rpv.admin_order_field = "crossroads_metrics__rpv"
 
     def get_crossroads_total_visitors(self, obj):
         return obj.crossroads_metrics.total_visitors
 
-    get_crossroads_total_visitors.short_description = "Crossroads Total Visitors"
+    get_crossroads_total_visitors.short_description = "CR Total Visitors"
     get_crossroads_total_visitors.admin_order_field = (
         "crossroads_metrics__total_visitors"
     )
@@ -194,7 +211,7 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_filtered_visitors(self, obj):
         return obj.crossroads_metrics.filtered_visitors
 
-    get_crossroads_filtered_visitors.short_description = "Crossroads Filtered Visitors"
+    get_crossroads_filtered_visitors.short_description = "CR Filtered Visitors"
     get_crossroads_filtered_visitors.admin_order_field = (
         "crossroads_metrics__filtered_visitors"
     )
@@ -202,7 +219,7 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_lander_visitors(self, obj):
         return obj.crossroads_metrics.lander_visitors
 
-    get_crossroads_lander_visitors.short_description = "Crossroads Lander Visitors"
+    get_crossroads_lander_visitors.short_description = "CR Lander Visitors"
     get_crossroads_lander_visitors.admin_order_field = (
         "crossroads_metrics__lander_visitors"
     )
@@ -210,7 +227,7 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_lander_searches(self, obj):
         return obj.crossroads_metrics.lander_searches
 
-    get_crossroads_lander_searches.short_description = "Crossroads Lander Searches"
+    get_crossroads_lander_searches.short_description = "CR Lander Searches"
     get_crossroads_lander_searches.admin_order_field = (
         "crossroads_metrics__lander_searches"
     )
@@ -218,7 +235,7 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     def get_crossroads_revenue_events(self, obj):
         return obj.crossroads_metrics.revenue_events
 
-    get_crossroads_revenue_events.short_description = "Crossroads Revenue Events"
+    get_crossroads_revenue_events.short_description = "CR Revenue Events"
     get_crossroads_revenue_events.admin_order_field = (
         "crossroads_metrics__revenue_events"
     )
