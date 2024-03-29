@@ -79,3 +79,10 @@ class CampaignMetrics(models.Model):
         related_name="all_campaign_metrics",
     )
     date = models.DateField()
+
+
+class ProxyCampaignMetrics(CampaignMetrics):
+    class Meta:
+        verbose_name = "Short Campaign Metrics"
+        verbose_name_plural = "Short Campaign Metrics"
+        proxy = True

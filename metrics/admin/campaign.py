@@ -3,6 +3,7 @@ from commons.admin import get_all_fieldnames
 
 from metrics.models import (
     CampaignMetrics,
+    ProxyCampaignMetrics,
     CrossroadsCampaignMetrics,
     TiktokBusinessCampaignMetrics,
 )
@@ -239,3 +240,124 @@ class CampaignMetricsAdmin(admin.ModelAdmin):
     get_crossroads_revenue_events.admin_order_field = (
         "crossroads_metrics__revenue_events"
     )
+
+
+@admin.register(ProxyCampaignMetrics)
+class ProxyCampaignMetricsAdmin(admin.ModelAdmin):
+    list_filter = ["crossroads_metrics__campaign__name"]
+    list_display = [
+        "get_tiktok_business_name",
+        "get_tiktok_business_identifier",
+        "get_crossroads_identifier",
+        "get_tiktok_business_date",
+        "get_crossroads_date",
+        "get_crossroads_revenue",
+        "get_tiktok_business_spend",
+        "get_profit",
+        "get_roi",
+        "get_rpc",
+        "get_cpa",
+        "get_cpa_da",
+        "get_hook_rate",
+    ]
+
+    def get_tiktok_business_name(self, obj):
+        return obj.tiktok_business_metrics.campaign.name
+
+    get_tiktok_business_name.short_description = "Name"
+    get_tiktok_business_name.admin_order_field = (
+        "tiktok_business_metrics__campaign__name"
+    )
+
+    def get_tiktok_business_identifier(self, obj):
+        return obj.tiktok_business_metrics.campaign.id
+
+    get_tiktok_business_identifier.short_description = "Id"
+    get_tiktok_business_identifier.admin_order_field = (
+        "tiktok_business_metrics__campaign__id"
+    )
+
+    def get_crossroads_identifier(self, obj):
+        return obj.crossroads_metrics.campaign.id
+
+    get_crossroads_identifier.short_description = "CR Id"
+    get_crossroads_identifier.admin_order_field = "crossroads_metrics__campaign__id"
+
+    def get_tiktok_business_date(self, obj):
+        return obj.tiktok_business_metrics.date
+
+    get_tiktok_business_date.short_description = "Date"
+    get_tiktok_business_date.admin_order_field = "tiktok_business_metrics__date"
+
+    def get_crossroads_date(self, obj):
+        return obj.crossroads_metrics.date
+
+    get_crossroads_date.short_description = "CR Date"
+    get_crossroads_date.admin_order_field = "crossroads_metrics__date"
+
+    def get_crossroads_revenue(self, obj):
+        return obj.crossroads_metrics.revenue
+
+    get_crossroads_revenue.short_description = "CR Revenue"
+    get_crossroads_revenue.admin_order_field = "crossroads_metrics__revenue"
+
+    def get_tiktok_business_spend(self, obj):
+        return obj.tiktok_business_metrics.spend
+
+    get_tiktok_business_spend.short_description = "Spend"
+    get_tiktok_business_spend.admin_order_field = "tiktok_business_metrics__spend"
+
+    def get_profit(self, obj):
+        return obj.crossroads_metrics.revenue - obj.tiktok_business_metrics.spend
+
+    get_profit.short_description = "Profit"
+
+    def get_roi(self, obj):
+        profit = obj.crossroads_metrics.revenue - obj.tiktok_business_metrics.spend
+        return (
+            safe_division(
+                (profit - obj.tiktok_business_metrics.spend),
+                obj.tiktok_business_metrics.spend,
+            )
+        ) * 100
+
+    get_roi.short_description = "ROI"
+
+    def get_rpc(self, obj):
+        return safe_division(
+            obj.crossroads_metrics.revenue, obj.tiktok_business_metrics.clicks
+        )
+
+    get_rpc.short_description = "RPC"
+
+    def get_cpa(self, obj):
+        return safe_division(
+            obj.tiktok_business_metrics.spend, obj.tiktok_business_metrics.clicks
+        )
+
+    get_cpa.short_description = "CPA"
+
+    def get_cpa_da(self, obj):
+        return safe_division(
+            obj.tiktok_business_metrics.spend, obj.crossroads_metrics.lander_visitors
+        )
+
+    get_cpa_da.short_description = "CPA DA"
+
+    def get_hook_rate(self, obj):
+        return (
+            safe_division(
+                obj.tiktok_business_metrics.video_views_p25,
+                obj.tiktok_business_metrics.video_play_actions,
+            )
+            * 100
+        )
+
+    get_hook_rate.short_description = "Hook Rate"
+
+
+def safe_division(number1, number2):
+    try:
+        return number1 / number2
+    except ZeroDivisionError:
+        return 0
