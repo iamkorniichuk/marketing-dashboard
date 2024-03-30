@@ -2,8 +2,10 @@
 crossroads.json
 tiktok_business.json
 google_ads.yaml
+google_search.json
 keyword_request.json
 google_credentials.json
+oxylabs.json
 etc/
 static/
 
