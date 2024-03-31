@@ -1,7 +1,8 @@
 from django.db import models
 
 from campaigns.models import CrossroadsCampaign
-from keywords.models import GoogleAdsKeyword
+from keywords.models import Keyword
+from regions.models import Region
 
 
 class CrossroadsKeywordMetrics(models.Model):
@@ -38,10 +39,11 @@ class GoogleAdsHistoricalKeywordMetrics(models.Model):
         verbose_name_plural = "Google Ads Historical Keyword Metrics"
 
     keyword = models.ForeignKey(
-        GoogleAdsKeyword,
+        Keyword,
         on_delete=models.PROTECT,
         related_name="historical_metrics",
     )
+    regions = models.ManyToManyField(Region, related_name="historical_metrics")
     date = models.DateField()
     average_month_search = models.FloatField(verbose_name="avg month search")
     partners_average_month_search = models.FloatField(
@@ -66,10 +68,11 @@ class GoogleAdsForecastKeywordMetrics(models.Model):
         verbose_name_plural = "Google Ads Forecast Keyword Metrics"
 
     keyword = models.ForeignKey(
-        GoogleAdsKeyword,
+        Keyword,
         on_delete=models.PROTECT,
         related_name="forecast_metrics",
     )
+    regions = models.ManyToManyField(Region, related_name="forecast_metrics")
     start_date = models.DateField(verbose_name="start")
     end_date = models.DateField(verbose_name="end")
     impressions = models.FloatField(verbose_name="impres.")
@@ -88,3 +91,25 @@ class GoogleAdsForecastKeywordMetrics(models.Model):
     partners_conversion_rate = models.FloatField(verbose_name="part. convers. rate")
     average_cpa = models.FloatField(verbose_name="avg cpa")
     partners_average_cpa = models.FloatField(verbose_name="part. avg cpa")
+
+
+# class GoogleSearchKeywordMetrics(models.Model):
+#     class Meta:
+#         constraints = [
+#             models.UniqueConstraint(
+#                 fields=["keyword", "date", "region"],
+#                 name="unique_google_search_keyword_metrics_for_date_and_region",
+#             )
+#         ]
+#         verbose_name_plural = "Google Ads Historical Keyword Metrics"
+
+#     historical_metrics = models.ForeignKey(
+#         GoogleAdsKeyword,
+#         on_delete=models.PROTECT,
+#         related_name="historical_metrics",
+#     )
+#     date = models.DateField()
+#     region = models.ForeignKey(
+#         Region, on_delete=models.PROTECT, related_name="search_metrics"
+#     )
+#     competition = models.FloatField()

@@ -1,7 +1,7 @@
 from .temp import TempCrossroadsKeyword
-from .models import GoogleAdsKeyword
+from .models import Keyword
 
 __all__ = [
     "TempCrossroadsKeyword",
-    "GoogleAdsKeyword",
+    "Keyword",
 ]
