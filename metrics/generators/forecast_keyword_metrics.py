@@ -1,11 +1,10 @@
 from datetime import datetime, timedelta
 from typing import Iterable
 from django.db.models import QuerySet
-from commons.models import filter_contains_all
 
-from keywords.models import GoogleAdsKeyword
-from keywords.utils import extract_regions_groups
+from keywords.models import Keyword
 from metrics.models import GoogleAdsForecastKeywordMetrics
+from regions.models import Region
 
 from api_clients.google_ads import GoogleAdsApiClient
 
@@ -14,7 +13,8 @@ api_client = GoogleAdsApiClient()
 
 
 def generate_forecast_metrics(
-    queryset: QuerySet[GoogleAdsKeyword],
+    queryset: QuerySet[Keyword],
+    regions: Iterable[Region],
     start_date=None,
     end_date=None,
 ) -> Iterable[GoogleAdsForecastKeywordMetrics]:
@@ -24,45 +24,41 @@ def generate_forecast_metrics(
     if not end_date:
         end_date = start_date + timedelta(weeks=2)
 
-    regions_groups = extract_regions_groups(queryset)
+    keywords = queryset.values_list("text", flat=True)
+    region_ids = [obj.id for obj in regions]
 
-    data = []
-    for regions, keywords in regions_groups.items():
-        response = api_client.request_forecast_keywords_metrics(
-            keywords,
-            regions,
-            start_date,
-            end_date,
-        )
-        data.extend(response)
+    data = api_client.request_forecast_keywords_metrics(
+        keywords,
+        region_ids,
+        start_date,
+        end_date,
+    )
 
-    metrics = []
     for row in data:
         exact_keywords = queryset.filter(text__iexact=row["keyword"])
-        keyword = filter_contains_all(exact_keywords, regions=row["region_ids"])
 
-        metrics.append(
-            GoogleAdsForecastKeywordMetrics(
-                keyword=keyword.first(),
-                start_date=row["start_date"],
-                end_date=row["end_date"],
-                impressions=row["impressions"],
-                partners_impressions=row["impressions_partners"],
-                ctr=row["ctr"],
-                partners_ctr=row["ctr_partners"],
-                average_cpc=row["avg_cpc"],
-                partners_average_cpc=row["avg_cpc_partners"],
-                clicks=row["clicks"],
-                partners_clicks=row["clicks_partners"],
-                cost=row["cost"],
-                partners_cost=row["cost_partners"],
-                conversions=row["conversions"],
-                partners_conversions=row["conversions_partners"],
-                conversion_rate=row["conversion_rate"],
-                partners_conversion_rate=row["conversion_rate_partners"],
-                average_cpa=row["avg_cpa"],
-                partners_average_cpa=row["avg_cpa_partners"],
-            )
+        obj, _ = GoogleAdsForecastKeywordMetrics.objects.update_or_create(
+            keyword=exact_keywords.first(),
+            start_date=row["start_date"],
+            end_date=row["end_date"],
+            defaults={
+                "impressions": row["impressions"],
+                "partners_impressions": row["impressions_partners"],
+                "ctr": row["ctr"],
+                "partners_ctr": row["ctr_partners"],
+                "average_cpc": row["avg_cpc"],
+                "partners_average_cpc": row["avg_cpc_partners"],
+                "clicks": row["clicks"],
+                "partners_clicks": row["clicks_partners"],
+                "cost": row["cost"],
+                "partners_cost": row["cost_partners"],
+                "conversions": row["conversions"],
+                "partners_conversions": row["conversions_partners"],
+                "conversion_rate": row["conversion_rate"],
+                "partners_conversion_rate": row["conversion_rate_partners"],
+                "average_cpa": row["avg_cpa"],
+                "partners_average_cpa": row["avg_cpa_partners"],
+            },
         )
 
-    return metrics
+        obj.regions.set(regions)

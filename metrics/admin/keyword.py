@@ -19,7 +19,7 @@ class GoogleAdsHistoricalKeywordMetricsAdmin(admin.ModelAdmin):
     list_filter = ["keyword__text"]
     list_display = [
         "get_keyword_text",
-        "get_keyword_regions_names",
+        "get_regions_names",
         "date",
         "average_month_search",
         "partners_average_month_search",
@@ -37,11 +37,11 @@ class GoogleAdsHistoricalKeywordMetricsAdmin(admin.ModelAdmin):
     get_keyword_text.short_description = "Keyword"
     get_keyword_text.admin_order_field = "keyword__text"
 
-    def get_keyword_regions_names(self, obj):
-        regions_names = obj.keyword.regions.values_list("name", flat=True)
+    def get_regions_names(self, obj):
+        regions_names = obj.regions.values_list("name", flat=True)
         return ", ".join(regions_names)
 
-    get_keyword_regions_names.short_description = "Regions"
+    get_regions_names.short_description = "Regions"
 
 
 @admin.register(GoogleAdsForecastKeywordMetrics)
@@ -49,7 +49,7 @@ class GoogleAdsForecastKeywordMetricsAdmin(admin.ModelAdmin):
     list_filter = ["keyword__text"]
     list_display = [
         "get_keyword_text",
-        "get_keyword_regions_names",
+        "get_regions_names",
         "start_date",
         "end_date",
         "impressions",
@@ -76,8 +76,8 @@ class GoogleAdsForecastKeywordMetricsAdmin(admin.ModelAdmin):
     get_keyword_text.short_description = "Keyword"
     get_keyword_text.admin_order_field = "keyword__text"
 
-    def get_keyword_regions_names(self, obj):
-        regions_names = obj.keyword.regions.values_list("name", flat=True)
+    def get_regions_names(self, obj):
+        regions_names = obj.regions.values_list("name", flat=True)
         return ", ".join(regions_names)
 
-    get_keyword_regions_names.short_description = "Regions"
+    get_regions_names.short_description = "Regions"
