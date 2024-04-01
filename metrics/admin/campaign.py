@@ -1,24 +1,9 @@
 from django.contrib import admin
-from commons.admin import get_all_fieldnames
 
 from metrics.models import (
     CampaignMetrics,
     ProxyCampaignMetrics,
-    CrossroadsCampaignMetrics,
-    TiktokBusinessCampaignMetrics,
 )
-
-
-@admin.register(CrossroadsCampaignMetrics)
-class CrossroadsCampaignMetricsAdmin(admin.ModelAdmin):
-    list_filter = ["campaign__name"]
-    list_display = get_all_fieldnames(CrossroadsCampaignMetrics)
-
-
-@admin.register(TiktokBusinessCampaignMetrics)
-class TiktokBusinessCampaignMetricsAdmin(admin.ModelAdmin):
-    list_filter = ["campaign__name"]
-    list_display = get_all_fieldnames(TiktokBusinessCampaignMetrics)
 
 
 @admin.register(CampaignMetrics)

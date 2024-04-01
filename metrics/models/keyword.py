@@ -13,7 +13,8 @@ class CrossroadsKeywordMetrics(models.Model):
                 name="unique_crossroads_keywords_metrics_for_date",
             )
         ]
-        verbose_name_plural = "Crossroads Keyword Metrics"
+        verbose_name = "Crossroads Keyword's"
+        verbose_name_plural = "Crossroads Keywords'"
 
     campaign = models.ForeignKey(
         CrossroadsCampaign,
@@ -36,7 +37,8 @@ class GoogleAdsHistoricalKeywordMetrics(models.Model):
                 name="unique_google_ads_historical_keyword_metrics_for_date",
             )
         ]
-        verbose_name_plural = "Google Ads Historical Keyword Metrics"
+        verbose_name = "Historical Keyword's"
+        verbose_name_plural = "Historical Keywords'"
 
     keyword = models.ForeignKey(
         Keyword,
@@ -65,7 +67,8 @@ class GoogleAdsForecastKeywordMetrics(models.Model):
                 name="unique_google_ads_forecast_keyword_metrics_for_date",
             )
         ]
-        verbose_name_plural = "Google Ads Forecast Keyword Metrics"
+        verbose_name = "Forecast Keyword's"
+        verbose_name_plural = "Forecast Keywords'"
 
     keyword = models.ForeignKey(
         Keyword,
@@ -101,7 +104,8 @@ class GoogleSearchKeywordMetrics(models.Model):
                 name="unique_google_search_keyword_metrics_for_date_and_region",
             )
         ]
-        verbose_name_plural = "Google Search Keyword Metrics"
+        verbose_name = "Competition Keyword's"
+        verbose_name_plural = "Competition Keywords'"
 
     keyword = models.ForeignKey(Keyword, on_delete=models.PROTECT)
     date = models.DateField()

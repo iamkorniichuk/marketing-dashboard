@@ -66,7 +66,8 @@ class CampaignMetrics(models.Model):
                 name="unique_campaign_metrics_for_date",
             )
         ]
-        verbose_name_plural = "Campaign Metrics"
+        verbose_name = "Full Campaign's"
+        verbose_name_plural = "Full Campaigns'"
 
     tiktok_business_metrics = models.ForeignKey(
         TiktokBusinessCampaignMetrics,
@@ -83,6 +84,6 @@ class CampaignMetrics(models.Model):
 
 class ProxyCampaignMetrics(CampaignMetrics):
     class Meta:
-        verbose_name = "Short Campaign Metrics"
-        verbose_name_plural = "Short Campaign Metrics"
+        verbose_name = "Short Campaign's"
+        verbose_name_plural = "Short Campaigns'"
         proxy = True
