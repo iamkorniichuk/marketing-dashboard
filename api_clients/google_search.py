@@ -7,6 +7,20 @@ from seleniumwire.webdriver import Firefox, FirefoxOptions
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
+
+
+def safe_selenium_request(default=None):
+    def decorator(request_function):
+        def wrapper(*args, **kwargs):
+            try:
+                return request_function(*args, **kwargs)
+            except TimeoutException:
+                return default
+
+        return wrapper
+
+    return decorator
 
 
 class GoogleSearchApiClient:
@@ -23,12 +37,19 @@ class GoogleSearchApiClient:
         # TODO: Does it always 26%?
         self.base_url = "https://cse.google.com/cse"
 
-    def request_keyword_competition(self, keyword, region_code):
-        pages = 5
+    def request_keywords_competition(self, keywords, region_code):
+        results = {}
+
+        for word in keywords:
+            results[word] = self.request_one_keyword_competition(word, region_code)
+
+        return results
+
+    def request_one_keyword_competition(self, keyword, region_code, pages=2):
         free_pages = ResultSet([])
         sponsored_pages = ResultSet([])
         for i in range(pages):
-            response = self.request_keyword_results(keyword, region_code, page=i)
+            response = self.request_query_search(keyword, region_code, page=i)
             soup = BeautifulSoup(response, "html.parser")
 
             sponsored_pages.extend(
@@ -55,22 +76,28 @@ class GoogleSearchApiClient:
             seleniumwire_options=seleniumwire_options,
         )
 
-    def request_keyword_results(self, keyword, region_code, page=0) -> str:
+    def request_query_search(self, query, region_code, page=0) -> str:
+        @safe_selenium_request(default="")
+        def extract_ad_iframe(webdriver):
+            wait = WebDriverWait(webdriver, 10)
+            iframe = wait.until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe#master-1"))
+            )
+            webdriver.switch_to.frame(iframe)
+            source = webdriver.page_source
+            webdriver.switch_to.default_content()
+            return source
+
         proxy = self.build_proxy(region_code)
         webdriver = self.build_webdriver(
             options_arguments=["--headless"],
             seleniumwire_options={"proxy": proxy},
         )
-        url = self.build_url(keyword, page)
+        url = self.build_url(query, page)
         webdriver.get(url)
 
-        wait = WebDriverWait(webdriver, 10)
-        iframe = wait.until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "iframe#master-1"))
-        )
+        ads_page = extract_ad_iframe(webdriver)
         whole_page = webdriver.page_source
-        webdriver.switch_to.frame(iframe)
-        ads_page = webdriver.page_source
 
         return whole_page + ads_page
 
