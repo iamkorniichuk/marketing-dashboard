@@ -7,6 +7,9 @@ class StatusChoices(models.TextChoices):
 
 
 class Region(models.Model):
+    class Meta:
+        ordering = ["name"]
+
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=128)
     canonical_name = models.CharField(max_length=128)
