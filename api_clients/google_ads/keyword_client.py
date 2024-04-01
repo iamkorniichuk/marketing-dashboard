@@ -1,6 +1,7 @@
 from typing import Iterable
 from datetime import datetime
 import pandas as pd
+from google.protobuf.json_format import MessageToDict
 
 from .utils import safe_google_request
 
@@ -58,22 +59,30 @@ class GoogleAdsKeywordClient:
             request=request
         )
 
-        data = [
-            {
-                "keyword": element.text,
-                "avg_month_search": element.keyword_metrics.avg_monthly_searches,
-                "avg_cpc": self.format_micros(
-                    element.keyword_metrics.average_cpc_micros
-                ),
-                "low_page_bid": self.format_micros(
-                    element.keyword_metrics.low_top_of_page_bid_micros
-                ),
-                "high_page_bid": self.format_micros(
-                    element.keyword_metrics.high_top_of_page_bid_micros
-                ),
-            }
-            for element in response.results
-        ]
+        data = []
+        for message in response.results:
+            metrics = MessageToDict(message.keyword_metrics)
+            volumes_df = pd.DataFrame.from_dict(metrics["monthlySearchVolumes"])
+            volumes_df["monthlySearches"] = pd.to_numeric(
+                volumes_df["monthlySearches"], errors="coerce"
+            )
+            volumes_df.rename(
+                columns={"monthlySearches": "monthly_searches"}, inplace=True
+            )
+            data.append(
+                {
+                    "keyword": message.text,
+                    "avg_month_search": metrics["avgMonthlySearches"],
+                    "avg_cpc": self.format_micros(metrics["averageCpcMicros"]),
+                    "low_page_bid": self.format_micros(
+                        metrics["lowTopOfPageBidMicros"]
+                    ),
+                    "high_page_bid": self.format_micros(
+                        metrics["highTopOfPageBidMicros"]
+                    ),
+                    "monthly_volumes": volumes_df.to_dict("records"),
+                }
+            )
         return data
 
     def request_forecast_keywords_metrics(
