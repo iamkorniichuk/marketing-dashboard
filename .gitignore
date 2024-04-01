@@ -8,6 +8,7 @@ google_credentials.json
 oxylabs.json
 etc/
 static/
+media/
 
 # Development-specific files
 db.sqlite3

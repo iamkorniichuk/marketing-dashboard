@@ -93,23 +93,26 @@ class GoogleAdsForecastKeywordMetrics(models.Model):
     partners_average_cpa = models.FloatField(verbose_name="part. avg cpa")
 
 
-# class GoogleSearchKeywordMetrics(models.Model):
-#     class Meta:
-#         constraints = [
-#             models.UniqueConstraint(
-#                 fields=["keyword", "date", "region"],
-#                 name="unique_google_search_keyword_metrics_for_date_and_region",
-#             )
-#         ]
-#         verbose_name_plural = "Google Ads Historical Keyword Metrics"
+class GoogleSearchKeywordMetrics(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["keyword", "date", "region"],
+                name="unique_google_search_keyword_metrics_for_date_and_region",
+            )
+        ]
+        verbose_name_plural = "Google Search Keyword Metrics"
 
-#     historical_metrics = models.ForeignKey(
-#         GoogleAdsKeyword,
-#         on_delete=models.PROTECT,
-#         related_name="historical_metrics",
-#     )
-#     date = models.DateField()
-#     region = models.ForeignKey(
-#         Region, on_delete=models.PROTECT, related_name="search_metrics"
-#     )
-#     competition = models.FloatField()
+    keyword = models.ForeignKey(Keyword, on_delete=models.PROTECT)
+    date = models.DateField()
+    region = models.ForeignKey(
+        Region, on_delete=models.PROTECT, related_name="search_metrics"
+    )
+    competition = models.FloatField()
+    average_cpc = models.FloatField(verbose_name="avg cpc")
+    partners_average_cpc = models.FloatField(verbose_name="part. avg cpc")
+    low_page_bid = models.FloatField()
+    partners_low_page_bid = models.FloatField(verbose_name="part. low page bid")
+    high_page_bid = models.FloatField()
+    partners_high_page_bid = models.FloatField(verbose_name="part. high page bid")
+    volume_trends_image = models.ImageField(upload_to="volume_trends/")

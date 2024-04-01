@@ -65,6 +65,8 @@ WSGI_APPLICATION = "marketing_dashboard.wsgi.application"
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static/"
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media/"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
