@@ -6,6 +6,7 @@ google_search.json
 keyword_request.json
 google_credentials.json
 oxylabs.json
+chat_gpt.json
 etc/
 static/
 media/
