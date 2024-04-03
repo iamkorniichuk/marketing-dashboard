@@ -5,6 +5,7 @@ from metrics.generators import (
     generate_historical_metrics,
     generate_keyword_competition,
 )
+from keywords.generators import generate_similar_keywords
 from regions.forms import SelectRegionsActionForm
 
 from api_clients.google_ads import GoogleAdsApiClient
@@ -32,3 +33,12 @@ def request_competition_metrics(modeladmin, request, queryset):
     form = SelectRegionsActionForm(request.POST)
     form.full_clean()
     generate_keyword_competition(queryset, form.cleaned_data["regions"][0])
+
+
+@admin.action(description="Request similar keywords")
+def request_similar_keywords(modeladmin, request, queryset):
+    form = SelectRegionsActionForm(request.POST)
+    form.full_clean()
+    regions = form.cleaned_data["regions"]
+    keywords = generate_similar_keywords(queryset)
+    generate_forecast_metrics(keywords, regions)
