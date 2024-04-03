@@ -1,13 +1,16 @@
 import json
-from paths import GOOGLE_SEARCH_CONFIG, OXYLABS_CONFIG
 from requests import PreparedRequest
 from urllib.parse import urlencode
 from bs4 import BeautifulSoup, ResultSet
+
 from seleniumwire.webdriver import Firefox, FirefoxOptions
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
+
+from paths import GOOGLE_SEARCH_CONFIG, OXYLABS_CONFIG
+from commons.design_patterns import Singleton
 
 
 def safe_selenium_request(default=None):
@@ -23,7 +26,7 @@ def safe_selenium_request(default=None):
     return decorator
 
 
-class GoogleSearchApiClient:
+class GoogleSearchApiClient(metaclass=Singleton):
     def __init__(
         self,
         google_search_config: str = GOOGLE_SEARCH_CONFIG,

@@ -1,3 +1,5 @@
+from commons.design_patterns import Singleton
+
 from .builder import GoogleAdsBuilder
 from .configer import GoogleAdsConfiger
 from .formatter import GoogleAdsFormatter
@@ -11,5 +13,6 @@ class GoogleAdsApiClient(
     GoogleAdsFormatter,
     GoogleAdsKeywordClient,
     GoogleAdsPandas,
+    metaclass=Singleton,
 ):
     pass

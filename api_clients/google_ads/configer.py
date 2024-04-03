@@ -1,7 +1,8 @@
 import json
-from paths import GOOGLE_ADS_CONFIG, KEYWORD_REQUEST_CONFIG
 
 from google.ads.googleads.client import GoogleAdsClient
+
+from paths import GOOGLE_ADS_CONFIG, KEYWORD_REQUEST_CONFIG
 
 
 class GoogleAdsConfiger:

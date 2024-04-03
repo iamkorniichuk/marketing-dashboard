@@ -1,10 +1,12 @@
 import json
 import requests
 import pandas as pd
+
 from paths import CROSSROADS_CONFIG
+from commons.design_patterns import Singleton
 
 
-class CrossroadsApiClient:
+class CrossroadsApiClient(metaclass=Singleton):
     def __init__(self, crossroads_config: str = CROSSROADS_CONFIG):
         with open(crossroads_config) as file:
             self.credentials = json.load(file)
