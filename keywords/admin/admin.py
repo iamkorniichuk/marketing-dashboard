@@ -11,7 +11,7 @@ from .actions import (
 
 
 @admin.register(Keyword)
-class GoogleAdsKeywordAdmin(admin.ModelAdmin):
+class KeywordAdmin(admin.ModelAdmin):
     list_filter = ["text"]
     list_display = ["text"]
     actions = [

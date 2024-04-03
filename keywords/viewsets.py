@@ -1,10 +1,10 @@
 from rest_framework.viewsets import ModelViewSet
 
 from keywords.models import Keyword
-from keywords.serializers import GoogleAdsKeywordSerializer
+from keywords.serializers import KeywordSerializer
 
 
-class GoogleAdsKeywordViewSet(ModelViewSet):
+class KeywordViewSet(ModelViewSet):
     queryset = Keyword.objects.all()
-    serializer_class = GoogleAdsKeywordSerializer
+    serializer_class = KeywordSerializer
     filterset_fields = ["id", "text"]

@@ -16,7 +16,7 @@ from metrics.models import (
     GoogleAdsForecastKeywordMetrics,
 )
 from keywords.models import Keyword
-from keywords.serializers import GoogleAdsKeywordSerializer
+from keywords.serializers import KeywordSerializer
 
 
 class TiktokBusinessCampaignMetricsSerializer(serializers.ModelSerializer):
@@ -74,7 +74,7 @@ class GoogleAdsHistoricalKeywordMetricsSerializer(serializers.ModelSerializer):
 
     keyword = RepresentativePkRelatedField(
         queryset=Keyword.objects.all(),
-        serializer_class=GoogleAdsKeywordSerializer,
+        serializer_class=KeywordSerializer,
     )
 
 
@@ -85,5 +85,5 @@ class GoogleAdsForecastKeywordMetricsSerializer(serializers.ModelSerializer):
 
     keyword = RepresentativePkRelatedField(
         queryset=Keyword.objects.all(),
-        serializer_class=GoogleAdsKeywordSerializer,
+        serializer_class=KeywordSerializer,
     )

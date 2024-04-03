@@ -1,5 +1,5 @@
-from .admin import GoogleAdsKeywordAdmin
+from .admin import KeywordAdmin
 
 __all__ = [
-    "GoogleAdsKeywordAdmin",
+    "KeywordAdmin",
 ]
