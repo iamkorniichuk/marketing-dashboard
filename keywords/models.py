@@ -10,7 +10,7 @@ class BaseKeyword(models.Model):
 
 class UserKeyword(BaseKeyword):
     class Meta:
-        verbose_name = "User"
+        verbose_name = "User Keyword"
         verbose_name_plural = "User"
 
     pass
@@ -18,7 +18,7 @@ class UserKeyword(BaseKeyword):
 
 class ChatGptKeyword(BaseKeyword):
     class Meta:
-        verbose_name = "ChatGPT"
+        verbose_name = "ChatGPT Keyword"
         verbose_name_plural = "ChatGPT"
 
     based_on = models.ManyToManyField(BaseKeyword, related_name="chat_gpt_keywords")

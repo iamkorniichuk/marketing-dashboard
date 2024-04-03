@@ -3,7 +3,7 @@ from django.db import models
 
 class CrossroadsCampaign(models.Model):
     class Meta:
-        verbose_name = "Crossroads"
+        verbose_name = "Crossroads Campaign"
         verbose_name_plural = "Crossroads"
 
     id = models.CharField(max_length=128, primary_key=True)
@@ -19,7 +19,7 @@ class TiktokBusinessAdvertiser(models.Model):
 
 class TiktokBusinessCampaign(models.Model):
     class Meta:
-        verbose_name = "Tiktok Business"
+        verbose_name = "Tiktok Business Campaign"
         verbose_name_plural = "Tiktok Business"
 
     id = models.CharField(max_length=128, primary_key=True)
