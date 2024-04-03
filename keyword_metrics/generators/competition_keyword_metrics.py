@@ -4,7 +4,7 @@ from django.core.files.base import ContentFile
 import pandas as pd
 from io import BytesIO
 
-from keywords.models import Keyword
+from keywords.models import BaseKeyword
 from regions.models import Region
 from keyword_metrics.models import GoogleSearchKeywordMetrics
 
@@ -15,7 +15,7 @@ search_api_client = GoogleSearchApiClient()
 ads_api_client = GoogleAdsApiClient()
 
 
-def generate_keyword_competition(queryset: QuerySet[Keyword], region: Region):
+def generate_keyword_competition(queryset: QuerySet[BaseKeyword], region: Region):
     keywords = queryset.values_list("text", flat=True)
     data = ads_api_client.request_historical_keywords_metrics(keywords, [region.id])
 

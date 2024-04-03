@@ -1,9 +1,24 @@
 from django.db import models
 
 
-class Keyword(models.Model):
+class BaseKeyword(models.Model):
     text = models.CharField(max_length=256, unique=True)
-    is_generated_by_chat_gpt = models.BooleanField(default=False)
 
     def __str__(self):
         return self.text
+
+
+class UserKeyword(BaseKeyword):
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "User"
+
+    pass
+
+
+class ChatGptKeyword(BaseKeyword):
+    class Meta:
+        verbose_name = "ChatGPT"
+        verbose_name_plural = "ChatGPT"
+
+    based_on = models.ManyToManyField(BaseKeyword, related_name="chat_gpt_keywords")

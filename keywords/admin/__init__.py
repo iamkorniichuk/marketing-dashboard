@@ -1,5 +1,3 @@
-from .admin import KeywordAdmin
+from .admin import UserKeywordAdmin, ChatGptKeywordAdmin
 
-__all__ = [
-    "KeywordAdmin",
-]
+__all__ = ["UserKeywordAdmin", "ChatGptKeywordAdmin"]

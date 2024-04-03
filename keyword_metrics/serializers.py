@@ -10,8 +10,8 @@ from keyword_metrics.models import (
     GoogleAdsHistoricalKeywordMetrics,
     GoogleAdsForecastKeywordMetrics,
 )
-from keywords.models import Keyword
-from keywords.serializers import KeywordSerializer
+from keywords.models import BaseKeyword
+from keywords.serializers import BaseKeywordSerializer
 
 
 class CrossroadsKeywordMetricsSerializer(serializers.ModelSerializer):
@@ -31,8 +31,8 @@ class GoogleAdsHistoricalKeywordMetricsSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     keyword = RepresentativePkRelatedField(
-        queryset=Keyword.objects.all(),
-        serializer_class=KeywordSerializer,
+        queryset=BaseKeyword.objects.all(),
+        serializer_class=BaseKeywordSerializer,
     )
 
 
@@ -42,6 +42,6 @@ class GoogleAdsForecastKeywordMetricsSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     keyword = RepresentativePkRelatedField(
-        queryset=Keyword.objects.all(),
-        serializer_class=KeywordSerializer,
+        queryset=BaseKeyword.objects.all(),
+        serializer_class=BaseKeywordSerializer,
     )

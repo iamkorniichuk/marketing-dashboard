@@ -1,7 +1,7 @@
 from django.db import models
 
 from campaigns.models import CrossroadsCampaign
-from keywords.models import Keyword
+from keywords.models import BaseKeyword
 from regions.models import Region
 
 
@@ -13,8 +13,8 @@ class CrossroadsKeywordMetrics(models.Model):
                 name="unique_crossroads_keywords_metrics_for_date",
             )
         ]
-        verbose_name = "Crossroads Keyword's"
-        verbose_name_plural = "Crossroads Keywords'"
+        verbose_name = "Crossroads"
+        verbose_name_plural = "Crossroads"
 
     campaign = models.ForeignKey(
         CrossroadsCampaign,
@@ -37,11 +37,11 @@ class GoogleAdsHistoricalKeywordMetrics(models.Model):
                 name="unique_google_ads_historical_keyword_metrics_for_date",
             )
         ]
-        verbose_name = "Historical Keyword's"
-        verbose_name_plural = "Historical Keywords'"
+        verbose_name = "Historical"
+        verbose_name_plural = "Historical"
 
     keyword = models.ForeignKey(
-        Keyword,
+        BaseKeyword,
         on_delete=models.PROTECT,
         related_name="historical_metrics",
     )
@@ -67,11 +67,11 @@ class GoogleAdsForecastKeywordMetrics(models.Model):
                 name="unique_google_ads_forecast_keyword_metrics_for_date",
             )
         ]
-        verbose_name = "Forecast Keyword's"
-        verbose_name_plural = "Forecast Keywords'"
+        verbose_name = "Forecast"
+        verbose_name_plural = "Forecast"
 
     keyword = models.ForeignKey(
-        Keyword,
+        BaseKeyword,
         on_delete=models.PROTECT,
         related_name="forecast_metrics",
     )
@@ -104,10 +104,10 @@ class GoogleSearchKeywordMetrics(models.Model):
                 name="unique_google_search_keyword_metrics_for_date_and_region",
             )
         ]
-        verbose_name = "Competition Keyword's"
-        verbose_name_plural = "Competition Keywords'"
+        verbose_name = "Competition"
+        verbose_name_plural = "Competition"
 
-    keyword = models.ForeignKey(Keyword, on_delete=models.PROTECT)
+    keyword = models.ForeignKey(BaseKeyword, on_delete=models.PROTECT)
     date = models.DateField()
     region = models.ForeignKey(
         Region, on_delete=models.PROTECT, related_name="search_metrics"

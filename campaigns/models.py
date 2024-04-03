@@ -2,6 +2,10 @@ from django.db import models
 
 
 class CrossroadsCampaign(models.Model):
+    class Meta:
+        verbose_name = "Crossroads"
+        verbose_name_plural = "Crossroads"
+
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=256)
 
@@ -14,6 +18,10 @@ class TiktokBusinessAdvertiser(models.Model):
 
 
 class TiktokBusinessCampaign(models.Model):
+    class Meta:
+        verbose_name = "Tiktok Business"
+        verbose_name_plural = "Tiktok Business"
+
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=256)
     advertiser = models.ForeignKey(
@@ -27,9 +35,6 @@ class TiktokBusinessCampaign(models.Model):
 
 
 class CrossroadsToTiktokBusinessIdentifiers(models.Model):
-    class Meta:
-        verbose_name_plural = "Crossroads To Tiktok Business Identifiers"
-
     tiktok_business = models.OneToOneField(
         TiktokBusinessCampaign,
         on_delete=models.PROTECT,

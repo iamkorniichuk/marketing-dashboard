@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from typing import Iterable
 from django.db.models import QuerySet
 
-from keywords.models import Keyword
+from keywords.models import BaseKeyword
 from regions.models import Region
 from keyword_metrics.models import GoogleAdsForecastKeywordMetrics
 
@@ -13,7 +13,7 @@ api_client = GoogleAdsApiClient()
 
 
 def generate_forecast_metrics(
-    queryset: QuerySet[Keyword],
+    queryset: QuerySet[BaseKeyword],
     regions: Iterable[Region],
     start_date=None,
     end_date=None,
