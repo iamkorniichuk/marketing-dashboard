@@ -1,8 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from metrics.viewsets import (
-    CampaignMetricsViewSet,
+from keyword_metrics.viewsets import (
     CrossroadsKeywordMetricsViewSet,
     GoogleAdsHistoricalKeywordMetricsViewSet,
     GoogleAdsForecastKeywordMetricsViewSet,
@@ -10,22 +9,19 @@ from metrics.viewsets import (
 
 
 router = DefaultRouter()
-router.register("campaigns", CampaignMetricsViewSet, basename="campaign")
+router.register("crossroads", CrossroadsKeywordMetricsViewSet, basename="crossroads")
 router.register(
-    "keywords/crossroads", CrossroadsKeywordMetricsViewSet, basename="crossroads"
-)
-router.register(
-    "keywords/google_ads/historical",
+    "google_ads/historical",
     GoogleAdsHistoricalKeywordMetricsViewSet,
     basename="google-ads-historical",
 )
 router.register(
-    "keywords/google_ads/forecast",
+    "google_ads/forecast",
     GoogleAdsForecastKeywordMetricsViewSet,
     basename="google-ads-forecast",
 )
 
-app_name = "metrics"
+app_name = "keyword_metrics"
 
 urlpatterns = [
     path("", include(router.urls)),

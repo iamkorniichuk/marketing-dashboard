@@ -1,13 +1,14 @@
 from django.core.management import call_command, BaseCommand
 from paths import CROSSROADS_CONFIG, TIKTOK_BUSINESS_CONFIG
 
-from metrics.management.commands import (
+from campaign_metrics.management.commands import (
     campaign_identifiers,
     crossroads_campaign_metrics,
     merge_campaign_metrics,
     tiktok_business_campaign_metrics,
-    crossroads_keyword_metrics,
 )
+
+from keyword_metrics.management.commands import crossroads_keyword_metrics
 
 
 class Command(BaseCommand):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from metrics.generators import (
+from keyword_metrics.generators import (
     generate_forecast_metrics,
     generate_historical_metrics,
     generate_keyword_competition,

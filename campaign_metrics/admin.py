@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from metrics.models import (
+from campaign_metrics.models import (
     CampaignMetrics,
     ProxyCampaignMetrics,
 )

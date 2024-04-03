@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 from api_clients import TiktokBusinessApiClient
 from campaigns.models import TiktokBusinessCampaign, TiktokBusinessAdvertiser
 
-from metrics.models import TiktokBusinessCampaignMetrics
+from campaign_metrics.models import TiktokBusinessCampaignMetrics
 
 
 class Command(BaseCommand):

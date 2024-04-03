@@ -26,8 +26,9 @@ INSTALLED_APPS = [
     "django_filters",
     "commons",
     "campaigns",
+    "campaign_metrics",
     "keywords",
-    "metrics",
+    "keyword_metrics",
     "regions",
 ]
 

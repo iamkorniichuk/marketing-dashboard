@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 from api_clients import CrossroadsApiClient
 from campaigns.models import CrossroadsCampaign
 
-from metrics.models import CrossroadsKeywordMetrics
+from keyword_metrics.models import CrossroadsKeywordMetrics
 
 
 class Command(BaseCommand):

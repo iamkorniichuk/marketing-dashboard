@@ -3,8 +3,8 @@ from typing import Iterable
 from django.db.models import QuerySet
 
 from keywords.models import Keyword
-from metrics.models import GoogleAdsForecastKeywordMetrics
 from regions.models import Region
+from keyword_metrics.models import GoogleAdsForecastKeywordMetrics
 
 from api_clients.google_ads import GoogleAdsApiClient
 

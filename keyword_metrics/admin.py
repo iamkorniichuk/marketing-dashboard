@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from commons.admin import get_all_fieldnames
 
-from metrics.models import (
+from keyword_metrics.models import (
     CrossroadsKeywordMetrics,
     GoogleAdsHistoricalKeywordMetrics,
     GoogleAdsForecastKeywordMetrics,

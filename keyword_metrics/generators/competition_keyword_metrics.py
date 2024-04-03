@@ -6,7 +6,7 @@ from io import BytesIO
 
 from keywords.models import Keyword
 from regions.models import Region
-from metrics.models import GoogleSearchKeywordMetrics
+from keyword_metrics.models import GoogleSearchKeywordMetrics
 
 from api_clients import GoogleSearchApiClient, GoogleAdsApiClient
 

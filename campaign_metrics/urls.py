@@ -1,13 +1,13 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from keywords.viewsets import KeywordViewSet
+from campaign_metrics.viewsets import CampaignMetricsViewSet
 
 
 router = DefaultRouter()
-router.register("google_ads", KeywordViewSet, basename="google-ads")
+router.register("", CampaignMetricsViewSet)
 
-app_name = "keywords"
+app_name = "campaign_metrics"
 
 urlpatterns = [
     path("", include(router.urls)),

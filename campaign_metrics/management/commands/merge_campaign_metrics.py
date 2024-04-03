@@ -5,7 +5,7 @@ from django.db.models import Exists, OuterRef
 
 from campaigns.models import CrossroadsToTiktokBusinessIdentifiers
 
-from metrics.models import (
+from campaign_metrics.models import (
     TiktokBusinessCampaignMetrics,
     CrossroadsCampaignMetrics,
     CampaignMetrics,

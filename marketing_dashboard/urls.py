@@ -7,8 +7,8 @@ from .schema import schema_view
 
 
 urlpatterns = [
-    path("api/metrics/", include("metrics.urls")),
-    path("api/keywords/", include("keywords.urls")),
+    path("api/campaign_metrics/", include("campaign_metrics.urls")),
+    path("api/keyword_metrics/", include("keyword_metrics.urls")),
     path(
         "api/schema/",
         schema_view.with_ui(),
