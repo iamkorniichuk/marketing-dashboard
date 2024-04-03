@@ -20,6 +20,7 @@ def generate_keyword_competition(queryset: QuerySet[Keyword], region: Region):
     data = ads_api_client.request_historical_keywords_metrics(keywords, [region.id])
 
     date = datetime.now().date()
+    results = []
     for row in data:
         keyword = row["keyword"]
         competition = search_api_client.request_one_keyword_competition(
@@ -62,3 +63,7 @@ def generate_keyword_competition(queryset: QuerySet[Keyword], region: Region):
         bytes = BytesIO()
         volume_plot.get_figure().savefig(bytes, format="png")
         obj.volume_trends_image.save(f"{obj.id}.png", ContentFile(bytes.getvalue()))
+
+        results.append(obj)
+
+    return results

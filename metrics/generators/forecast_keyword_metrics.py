@@ -34,6 +34,7 @@ def generate_forecast_metrics(
         end_date,
     )
 
+    results = []
     for row in data:
         exact_keywords = queryset.filter(text__iexact=row["keyword"])
 
@@ -62,3 +63,6 @@ def generate_forecast_metrics(
         )
 
         obj.regions.set(regions)
+        results.append(obj)
+
+    return results

@@ -23,6 +23,7 @@ def generate_historical_metrics(
     data = api_client.request_historical_keywords_metrics(keywords, region_ids)
 
     today = datetime.now()
+    results = []
     for row in data:
         exact_keywords = queryset.filter(text__iexact=row["keyword"])
 
@@ -41,3 +42,6 @@ def generate_historical_metrics(
             },
         )
         obj.regions.set(regions)
+        results.append(obj)
+
+    return results
