@@ -1,18 +1,14 @@
 import json
 
-from google.ads.googleads.client import GoogleAdsClient
+from paths import KEYWORD_REQUEST_CONFIG
 
-from paths import GOOGLE_ADS_CONFIG, KEYWORD_REQUEST_CONFIG
+from .utils import initialize_google_ads_client
 
 
 class GoogleAdsConfiger:
-    def __init__(
-        self,
-        google_ads_config: str = GOOGLE_ADS_CONFIG,
-        request_config: str = KEYWORD_REQUEST_CONFIG,
-    ):
-        self.api_client = GoogleAdsClient.load_from_storage(google_ads_config)
-        with open(request_config) as file:
+    def __init__(self):
+        self.api_client = initialize_google_ads_client()
+        with open(KEYWORD_REQUEST_CONFIG) as file:
             self.request_config = json.load(file)
 
         self.ads_service = self.api_client.get_service("GoogleAdsService")

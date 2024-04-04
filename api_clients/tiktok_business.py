@@ -11,8 +11,8 @@ from commons.design_patterns import Singleton
 
 
 class TiktokBusinessApiClient(metaclass=Singleton):
-    def __init__(self, tiktok_business_config: str = TIKTOK_BUSINESS_CONFIG):
-        with open(tiktok_business_config) as file:
+    def __init__(self):
+        with open(TIKTOK_BUSINESS_CONFIG) as file:
             self.credentials = json.load(file)
         self.api_client = ApiClient()
         self.reporting_service = ReportingApi()

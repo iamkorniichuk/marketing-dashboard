@@ -8,8 +8,8 @@ from commons.design_patterns import Singleton
 
 
 class ChatGptApiClient(metaclass=Singleton):
-    def __init__(self, chat_gpt_config=CHAT_GPT_CONFIG):
-        with open(chat_gpt_config) as file:
+    def __init__(self):
+        with open(CHAT_GPT_CONFIG) as file:
             self.credentials = json.load(file)
 
         self.client = OpenAI(api_key=self.credentials["api_key"])

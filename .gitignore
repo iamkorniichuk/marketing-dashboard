@@ -4,9 +4,10 @@ tiktok_business.json
 google_ads.yaml
 google_search.json
 keyword_request.json
-google_credentials.json
+google_cloud_credentials.json
 oxylabs.json
 chat_gpt.json
+gmail_credentials.json
 etc/
 static/
 media/

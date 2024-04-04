@@ -1,5 +1,4 @@
 from datetime import datetime
-from paths import TIKTOK_BUSINESS_CONFIG
 
 from django.core.management.base import BaseCommand
 from django.db.models import Exists, OuterRef
@@ -15,19 +14,10 @@ from campaigns.models import (
 class Command(BaseCommand):
     help = "Create identifiers to relate Crossroads to Tiktok Business campaigns"
 
-    def add_arguments(self, parser):
-        parser.add_argument(
-            "-cfg",
-            "--config",
-            dest="config",
-            type=str,
-            default=TIKTOK_BUSINESS_CONFIG,
-        )
-
     def handle(self, *args, **options):
         self.datetime = datetime.now()
 
-        self.api_client = TiktokBusinessApiClient(options["config"])
+        self.api_client = TiktokBusinessApiClient()
         incomplete_campaigns = TiktokBusinessCampaign.objects.filter(
             ~Exists(
                 CrossroadsToTiktokBusinessIdentifiers.objects.filter(

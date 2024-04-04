@@ -7,8 +7,8 @@ from commons.design_patterns import Singleton
 
 
 class CrossroadsApiClient(metaclass=Singleton):
-    def __init__(self, crossroads_config: str = CROSSROADS_CONFIG):
-        with open(crossroads_config) as file:
+    def __init__(self):
+        with open(CROSSROADS_CONFIG) as file:
             self.credentials = json.load(file)
         self.base_url = "https://crossroads.domainactive.com/api/v2/"
 

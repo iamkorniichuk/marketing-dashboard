@@ -27,17 +27,12 @@ def safe_selenium_request(default=None):
 
 
 class GoogleSearchApiClient(metaclass=Singleton):
-    def __init__(
-        self,
-        google_search_config: str = GOOGLE_SEARCH_CONFIG,
-        oxylabs_config: str = OXYLABS_CONFIG,
-    ):
-        with open(google_search_config) as file:
+    def __init__(self):
+        with open(GOOGLE_SEARCH_CONFIG) as file:
             self.credentials = json.load(file)
 
-        with open(oxylabs_config) as file:
+        with open(OXYLABS_CONFIG) as file:
             self.proxy_config = json.load(file)
-        # TODO: Does it always 26%?
         self.base_url = "https://cse.google.com/cse"
 
     def request_keywords_competition(self, keywords, region_code):
