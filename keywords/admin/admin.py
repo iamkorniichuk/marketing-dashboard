@@ -28,6 +28,13 @@ class UserKeywordAdmin(admin.ModelAdmin):
 class ChatGptKeywordAdmin(admin.ModelAdmin):
     list_filter = ["text"]
     list_display = ["text", "get_based_on_keywords"]
+    actions = [
+        request_historical_metrics,
+        request_forecast_metrics,
+        request_competition_metrics,
+        request_similar_keywords,
+    ]
+    action_form = SelectRegionsActionForm
 
     def get_based_on_keywords(self, obj):
         keywords = obj.based_on.values_list("text", flat=True)
