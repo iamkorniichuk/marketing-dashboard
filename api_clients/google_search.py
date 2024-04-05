@@ -88,7 +88,7 @@ class GoogleSearchApiClient(metaclass=Singleton):
 
         proxy = self.build_proxy(region_code)
         webdriver = self.build_webdriver(
-            options_arguments=["--headless"],
+            # options_arguments=["--headless"],
             seleniumwire_options={"proxy": proxy},
         )
         url = self.build_url(query, page)
@@ -97,6 +97,7 @@ class GoogleSearchApiClient(metaclass=Singleton):
         ads_page = extract_ad_iframe(webdriver)
         whole_page = webdriver.page_source
 
+        webdriver.quit()
         return whole_page + ads_page
 
     def build_url(self, search, page=0):

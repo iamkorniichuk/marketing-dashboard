@@ -41,7 +41,6 @@ def safe_google_request(request_function, sleep_time=5):
 def initialize_google_ads_client() -> GoogleAdsClient:
     def parse_token():
         redirected_url = webdriver.current_url
-        print(redirected_url)
         query = urlparse(redirected_url).query
         code = parse_qs(query).get("code", [None])[0]
         if code:
@@ -94,7 +93,9 @@ def initialize_google_ads_client() -> GoogleAdsClient:
         include_granted_scopes="true",
     )
 
-    webdriver = Chrome(headless=True)
+    webdriver = Chrome(
+        # headless=True,
+    )
     webdriver.get(url)
 
     token = parse_token()

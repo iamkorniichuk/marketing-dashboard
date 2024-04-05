@@ -72,13 +72,15 @@ class GoogleAdsKeywordClient:
             data.append(
                 {
                     "keyword": message.text,
-                    "avg_month_search": metrics["avgMonthlySearches"],
-                    "avg_cpc": self.format_micros(metrics["averageCpcMicros"]),
+                    "avg_month_search": message.keyword_metrics.avg_monthly_searches,
+                    "avg_cpc": self.format_micros(
+                        message.keyword_metrics.average_cpc_micros
+                    ),
                     "low_page_bid": self.format_micros(
-                        metrics["lowTopOfPageBidMicros"]
+                        message.keyword_metrics.low_top_of_page_bid_micros
                     ),
                     "high_page_bid": self.format_micros(
-                        metrics["highTopOfPageBidMicros"]
+                        message.keyword_metrics.high_top_of_page_bid_micros
                     ),
                     "monthly_volumes": volumes_df.to_dict("records"),
                 }
