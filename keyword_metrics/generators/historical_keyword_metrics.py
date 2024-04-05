@@ -26,7 +26,6 @@ def generate_historical_metrics(
     results = []
     for row in data:
         exact_keywords = queryset.filter(text__iexact=row["keyword"])
-
         obj, _ = GoogleAdsHistoricalKeywordMetrics.objects.update_or_create(
             keyword=exact_keywords.first(),
             date=today.now(),
