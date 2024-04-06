@@ -1,4 +1,5 @@
 from django.contrib import admin
+from commons.admin import get_all_fieldnames
 
 from keywords.models import UserKeyword, ChatGptKeyword
 from regions.forms import SelectRegionsActionForm
@@ -13,8 +14,8 @@ from .actions import (
 
 @admin.register(UserKeyword)
 class UserKeywordAdmin(admin.ModelAdmin):
-    list_filter = ["text"]
-    list_display = ["text"]
+    list_filter = ["text", "marketing"]
+    list_display = get_all_fieldnames(UserKeyword)
     actions = [
         request_historical_metrics,
         request_forecast_metrics,
@@ -26,8 +27,8 @@ class UserKeywordAdmin(admin.ModelAdmin):
 
 @admin.register(ChatGptKeyword)
 class ChatGptKeywordAdmin(admin.ModelAdmin):
-    list_filter = ["text"]
-    list_display = ["text", "get_based_on_keywords"]
+    list_filter = ["text", "marketing"]
+    list_display = ["text", "marketing", "get_based_on_keywords"]
     actions = [
         request_historical_metrics,
         request_forecast_metrics,

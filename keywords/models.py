@@ -8,7 +8,16 @@ def preprocess_keyword(text):
 
 
 class BaseKeyword(models.Model):
+    class MarketingChoices(models.TextChoices):
+        B2C = "B2C", "Business To Customer"
+        B2B = "B2B", "Business To Business"
+
     text = models.CharField(max_length=256, unique=True)
+    marketing = models.CharField(
+        max_length=64,
+        choices=MarketingChoices.choices,
+        default=MarketingChoices.B2C,
+    )
 
     def save(self, *args, **kwargs):
         self.text = preprocess_keyword(self.text)
