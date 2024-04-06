@@ -39,72 +39,73 @@ def safe_google_request(request_function, sleep_time=5):
 
 
 def initialize_google_ads_client() -> GoogleAdsClient:
-    def parse_token():
-        redirected_url = webdriver.current_url
-        query = urlparse(redirected_url).query
-        code = parse_qs(query).get("code", [None])[0]
-        if code:
-            return flow.fetch_token(code=code)
-
-    def manually_login():
-        with open(GMAIL_CREDENTIALS) as file:
-            credentials = json.load(file)
-
-        actions = ActionChains(webdriver)
-        actions.send_keys(credentials["email"]).perform()
-        actions.send_keys(Keys.ENTER).perform()
-        time.sleep(10)  # TODO: Do with `wait.until()`
-
-        actions.send_keys(credentials["password"]).perform()
-        actions.send_keys(Keys.ENTER).perform()
-
-        wait = WebDriverWait(webdriver, 10)
-        wrapper = wait.until(
-            EC.visibility_of_element_located((By.ID, "submit_approve_access"))
-        )
-
-        button = wrapper.find_element(By.TAG_NAME, "button")
-        button.click()
-
-        wait.until(EC.url_contains(redirect_uri))
-
-    def refresh_config():
-        with open(GOOGLE_ADS_CONFIG, "r+") as file:
-            data = yaml.safe_load(file)
-            data["refresh_token"] = token["access_token"]
-
-            file.seek(0)
-            yaml.dump(data, file)
-            file.truncate()
-
     try:
         return GoogleAdsClient.load_from_storage(GOOGLE_ADS_CONFIG)
     except RefreshError:
         pass
 
-    redirect_uri = "http://localhost"
     flow = InstalledAppFlow.from_client_secrets_file(
         GOOGLE_CLOUD_CREDENTIALS,
         scopes=["https://www.googleapis.com/auth/adwords"],
-        redirect_uri=redirect_uri,
+        redirect_uri="http://localhost",
     )
     url, _ = flow.authorization_url(
         access_type="offline",
         include_granted_scopes="true",
     )
 
-    webdriver = Chrome(
-        # headless=True,
-    )
+    webdriver = Chrome()
     webdriver.get(url)
 
-    token = parse_token()
-    if not token:
-        manually_login()
-        token = parse_token()
+    _manually_login(webdriver)
+    token = _parse_token(webdriver, flow)
 
     webdriver.quit()
 
-    refresh_config()
+    _refresh_config(token)
 
     return GoogleAdsClient.load_from_storage(GOOGLE_ADS_CONFIG)
+
+
+def _parse_token(webdriver, flow):
+    wait = WebDriverWait(webdriver, 10)
+
+    wait.until(EC.url_contains("code="))
+
+    url = webdriver.current_url
+    query = urlparse(url).query
+    code = parse_qs(query)["code"][0]
+    return flow.fetch_token(code=code)
+
+
+def _manually_login(webdriver):
+    with open(GMAIL_CREDENTIALS) as file:
+        credentials = json.load(file)
+
+    wait = WebDriverWait(webdriver, 10)
+
+    actions = ActionChains(webdriver)
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@type='email']")))
+    actions.send_keys(credentials["email"]).perform()
+    actions.send_keys(Keys.ENTER).perform()
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@type='password']")))
+    actions.send_keys(credentials["password"]).perform()
+    actions.send_keys(Keys.ENTER).perform()
+
+    wrapper = wait.until(
+        EC.presence_of_element_located((By.ID, "submit_approve_access"))
+    )
+    button = wrapper.find_element(By.TAG_NAME, "button")
+    button.click()
+
+
+def _refresh_config(token):
+    with open(GOOGLE_ADS_CONFIG, "r+") as file:
+        data = yaml.safe_load(file)
+        data["refresh_token"] = token["access_token"]
+
+        file.seek(0)
+        yaml.dump(data, file)
+        file.truncate()
