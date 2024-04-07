@@ -1,15 +1,14 @@
 import time
 import json
 import yaml
-import platform
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
+from commons.webdriver import DisplayWebdriver
 
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.exceptions import RefreshError
 from google.api_core.exceptions import ResourceExhausted
 from google.ads.googleads.client import GoogleAdsClient
-from undetected_chromedriver import Chrome
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -54,26 +53,11 @@ def initialize_google_ads_client() -> GoogleAdsClient:
         access_type="offline",
         include_granted_scopes="true",
     )
-
-    is_linux = platform.system() == "Linux"
-    if is_linux:
-        from pyvirtualdisplay import Display
-
-        display = Display(backend="xvfb")
-        display.start()
-    webdriver = Chrome()
-    webdriver.get(url)
-
-    try:
+    with DisplayWebdriver() as webdriver:
+        webdriver.get(url)
         _manually_login(webdriver)
         token = _parse_token(webdriver, flow)
         _refresh_config(token)
-    except:
-        pass
-    finally:
-        webdriver.quit()
-        if is_linux:
-            display.stop()
 
     return GoogleAdsClient.load_from_storage(GOOGLE_ADS_CONFIG)
 

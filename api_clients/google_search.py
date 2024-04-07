@@ -1,9 +1,9 @@
 import json
 from requests import PreparedRequest
 from urllib.parse import urlencode
+from commons.webdriver import DisplayWebdriver
 from bs4 import BeautifulSoup, ResultSet
 
-from seleniumwire.webdriver import Firefox, FirefoxOptions
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -55,24 +55,7 @@ class GoogleSearchApiClient(metaclass=Singleton):
             )
             free_pages.extend(soup.select("div.gsc-webResult.gsc-result"))
 
-        total_pages_number = len(free_pages) + len(sponsored_pages)
-        result = len(sponsored_pages) / total_pages_number * 100
-
-        return int(result)
-
-    def build_webdriver(
-        self,
-        options_arguments=[],
-        seleniumwire_options={},
-    ) -> Firefox:
-        driver_options = FirefoxOptions()
-        for argument in options_arguments:
-            driver_options.add_argument(argument)
-
-        return Firefox(
-            options=driver_options,
-            seleniumwire_options=seleniumwire_options,
-        )
+        return len(sponsored_pages), len(free_pages)
 
     def request_query_search(self, query, region_code, page=0) -> str:
         @safe_selenium_request(default="")
@@ -87,18 +70,14 @@ class GoogleSearchApiClient(metaclass=Singleton):
             return source
 
         proxy = self.build_proxy(region_code)
-        webdriver = self.build_webdriver(
-            # options_arguments=["--headless"],
-            seleniumwire_options={"proxy": proxy},
-        )
-        url = self.build_url(query, page)
-        webdriver.get(url)
+        with DisplayWebdriver(proxy=proxy) as webdriver:
+            url = self.build_url(query, page)
+            webdriver.get(url)
 
-        ads_page = extract_ad_iframe(webdriver)
-        whole_page = webdriver.page_source
+            ads_page = extract_ad_iframe(webdriver)
+            whole_page = webdriver.page_source
 
-        webdriver.quit()
-        return whole_page + ads_page
+            return whole_page + ads_page
 
     def build_url(self, search, page=0):
         request = PreparedRequest()
