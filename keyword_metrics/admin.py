@@ -92,7 +92,8 @@ class GoogleSearchKeywordMetricsAdmin(admin.ModelAdmin):
         "get_keyword_text",
         "date",
         "get_region_name",
-        "competition",
+        "get_results_ratio",
+        "get_competition",
         "average_cpc",
         "partners_average_cpc",
         "low_page_bid",
@@ -112,6 +113,19 @@ class GoogleSearchKeywordMetricsAdmin(admin.ModelAdmin):
         return obj.region.name
 
     get_region_name.short_description = "Region"
+
+    def get_results_ratio(self, obj):
+        all_results = obj.sponsored_results + obj.common_results
+        return f"{obj.sponsored_results}/{all_results}"
+
+    get_results_ratio.short_description = "Results Ratio"
+
+    def get_competition(self, obj):
+        all_results = obj.sponsored_results + obj.common_results
+        competition = obj.sponsored_results / all_results * 100
+        return f"{competition:.2f}"
+
+    get_competition.short_description = "Competition"
 
     def get_volume_trends_img_tag(self, obj):
         return format_html(f'<img src="{obj.volume_trends_image.url}" height="100"/>')

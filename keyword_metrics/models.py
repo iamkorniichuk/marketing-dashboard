@@ -112,7 +112,8 @@ class GoogleSearchKeywordMetrics(models.Model):
     region = models.ForeignKey(
         Region, on_delete=models.PROTECT, related_name="search_metrics"
     )
-    competition = models.FloatField()
+    sponsored_results = models.SmallIntegerField()
+    common_results = models.SmallIntegerField()
     average_cpc = models.FloatField(verbose_name="avg cpc")
     partners_average_cpc = models.FloatField(verbose_name="part. avg cpc")
     low_page_bid = models.FloatField()

@@ -23,8 +23,10 @@ def generate_keyword_competition(queryset: QuerySet[BaseKeyword], region: Region
     results = []
     for row in data:
         keyword = row["keyword"]
-        competition = search_api_client.request_one_keyword_competition(
-            keyword, region.country_code
+        sponsored_results, common_results = (
+            search_api_client.request_one_keyword_competition(
+                keyword, region.country_code
+            )
         )
         exact_keywords = queryset.filter(text__iexact=keyword)
         obj, _ = GoogleSearchKeywordMetrics.objects.update_or_create(
@@ -32,7 +34,8 @@ def generate_keyword_competition(queryset: QuerySet[BaseKeyword], region: Region
             date=date,
             region=region,
             defaults={
-                "competition": competition,
+                "sponsored_results": sponsored_results,
+                "common_results": common_results,
                 "average_cpc": row["avg_cpc"],
                 "partners_average_cpc": row["avg_cpc_partners"],
                 "low_page_bid": row["low_page_bid"],
