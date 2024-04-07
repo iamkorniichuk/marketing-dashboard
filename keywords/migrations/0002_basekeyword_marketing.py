@@ -15,10 +15,12 @@ class Migration(migrations.Migration):
             name="marketing",
             field=models.CharField(
                 choices=[
+                    ("", ""),
                     ("B2C", "Business To Customer"),
                     ("B2B", "Business To Business"),
                 ],
-                default="B2C",
+                default="",
+                blank=True,
                 max_length=64,
             ),
         ),

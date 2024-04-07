@@ -9,6 +9,7 @@ def preprocess_keyword(text):
 
 class BaseKeyword(models.Model):
     class MarketingChoices(models.TextChoices):
+        BLANK = "", ""
         B2C = "B2C", "Business To Customer"
         B2B = "B2B", "Business To Business"
 
@@ -16,7 +17,8 @@ class BaseKeyword(models.Model):
     marketing = models.CharField(
         max_length=64,
         choices=MarketingChoices.choices,
-        default=MarketingChoices.B2C,
+        default=MarketingChoices.BLANK,
+        blank=True,
     )
 
     def save(self, *args, **kwargs):
