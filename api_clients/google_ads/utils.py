@@ -1,6 +1,7 @@
 import time
 import json
 import yaml
+import platform
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
 
@@ -54,15 +55,25 @@ def initialize_google_ads_client() -> GoogleAdsClient:
         include_granted_scopes="true",
     )
 
+    is_linux = platform.system() == "Linux"
+    if is_linux:
+        from pyvirtualdisplay import Display
+
+        display = Display(backend="xvfb")
+        display.start()
     webdriver = Chrome()
     webdriver.get(url)
 
-    _manually_login(webdriver)
-    token = _parse_token(webdriver, flow)
-
-    webdriver.quit()
-
-    _refresh_config(token)
+    try:
+        _manually_login(webdriver)
+        token = _parse_token(webdriver, flow)
+        _refresh_config(token)
+    except:
+        pass
+    finally:
+        webdriver.quit()
+        if is_linux:
+            display.stop()
 
     return GoogleAdsClient.load_from_storage(GOOGLE_ADS_CONFIG)
 
