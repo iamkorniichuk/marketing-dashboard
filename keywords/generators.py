@@ -29,3 +29,17 @@ def generate_similar_keywords(
         if row["avg_cpc"] > cpc_limit:
             obj, _ = ChatGptKeyword.objects.get_or_create(text=row["keyword"])
             obj.based_on.set(queryset)
+
+
+def generate_marketing_type_choice(queryset: QuerySet[BaseKeyword]):
+    keywords = queryset.values_list("text", flat=True)
+    choices = chat_gpt_api_client.request_marketing_type_choice(keywords)
+
+    objs = []
+    for text, marketing in choices.items():
+        obj = queryset.filter(text__iexact=text).first()
+        if obj:
+            obj.marketing = marketing
+            objs.append(obj)
+
+    BaseKeyword.objects.bulk_update(objs, ["marketing"])
