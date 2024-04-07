@@ -5,7 +5,10 @@ from keyword_metrics.generators import (
     generate_historical_metrics,
     generate_keyword_competition,
 )
-from keywords.generators import generate_similar_keywords
+from keywords.generators import (
+    generate_similar_keywords,
+    generate_marketing_type_choice,
+)
 from regions.forms import SelectRegionsActionForm
 
 
@@ -35,3 +38,8 @@ def request_similar_keywords(modeladmin, request, queryset):
     form = SelectRegionsActionForm(request.POST)
     form.full_clean()
     generate_similar_keywords(queryset, form.cleaned_data["regions"], cpc_limit=3.0)
+
+
+@admin.action(description="Request marketing type")
+def request_marketing_type(modeladmin, request, queryset):
+    generate_marketing_type_choice(queryset)

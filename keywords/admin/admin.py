@@ -9,6 +9,7 @@ from .actions import (
     request_forecast_metrics,
     request_competition_metrics,
     request_similar_keywords,
+    request_marketing_type,
 )
 
 
@@ -21,6 +22,7 @@ class UserKeywordAdmin(admin.ModelAdmin):
         request_forecast_metrics,
         request_competition_metrics,
         request_similar_keywords,
+        request_marketing_type,
     ]
     action_form = SelectRegionsActionForm
 
@@ -34,6 +36,7 @@ class ChatGptKeywordAdmin(admin.ModelAdmin):
         request_forecast_metrics,
         request_competition_metrics,
         request_similar_keywords,
+        request_marketing_type,
     ]
     action_form = SelectRegionsActionForm
 
