@@ -46,18 +46,20 @@ class GoogleSearchApiClient(metaclass=Singleton):
     def request_one_keyword_competition(self, keyword, region_code, pages=2):
         free_pages = ResultSet([])
         sponsored_pages = ResultSet([])
-        for i in range(pages):
-            response = self.request_query_search(keyword, region_code, page=i)
-            soup = BeautifulSoup(response, "html.parser")
+        proxy = self.build_proxy(region_code)
+        with DisplayWebdriver(proxy=proxy) as webdriver:
+            for i in range(pages):
+                response = self.request_query_search(webdriver, keyword, page=i)
+                soup = BeautifulSoup(response, "html.parser")
 
-            sponsored_pages.extend(
-                soup.select("div.i_.clicktrackedAd_js.styleable-rootcontainer")
-            )
-            free_pages.extend(soup.select("div.gsc-webResult.gsc-result"))
+                sponsored_pages.extend(
+                    soup.select("div.i_.clicktrackedAd_js.styleable-rootcontainer")
+                )
+                free_pages.extend(soup.select("div.gsc-webResult.gsc-result"))
 
         return len(sponsored_pages), len(free_pages)
 
-    def request_query_search(self, query, region_code, page=0) -> str:
+    def request_query_search(self, webdriver, query, page=0) -> str:
         @safe_selenium_request(default="")
         def extract_ad_iframe(webdriver):
             wait = WebDriverWait(webdriver, 10)
@@ -69,15 +71,13 @@ class GoogleSearchApiClient(metaclass=Singleton):
             webdriver.switch_to.default_content()
             return source
 
-        proxy = self.build_proxy(region_code)
-        with DisplayWebdriver(proxy=proxy) as webdriver:
-            url = self.build_url(query, page)
-            webdriver.get(url)
+        url = self.build_url(query, page)
+        webdriver.get(url)
 
-            ads_page = extract_ad_iframe(webdriver)
-            whole_page = webdriver.page_source
+        ads_page = extract_ad_iframe(webdriver)
+        whole_page = webdriver.page_source
 
-            return whole_page + ads_page
+        return whole_page + ads_page
 
     def build_url(self, search, page=0):
         request = PreparedRequest()

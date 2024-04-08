@@ -10,6 +10,9 @@ class DisplayWebdriver:
         options = ChromeOptions()
         options.add_argument("--ignore-ssl-errors=yes")
         options.add_argument("--ignore-certificate-errors")
+        options.add_argument("--blink-settings=imagesEnabled=false")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_argument("--window-size=600,400")
         self.kwargs = {"options": options}
         if proxy:
             self.kwargs["seleniumwire_options"] = {"proxy": proxy}
