@@ -9,3 +9,4 @@ class SelectRegionsActionForm(ActionForm):
         queryset=Region.objects.all(),
         required=False,
     )
+    cpc_limit = forms.FloatField(min_value=0, required=False)

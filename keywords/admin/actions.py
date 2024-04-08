@@ -37,7 +37,9 @@ def request_competition_metrics(modeladmin, request, queryset):
 def request_similar_keywords(modeladmin, request, queryset):
     form = SelectRegionsActionForm(request.POST)
     form.full_clean()
-    generate_similar_keywords(queryset, form.cleaned_data["regions"], cpc_limit=3.0)
+    generate_similar_keywords(
+        queryset, form.cleaned_data["regions"], cpc_limit=form.cleaned_data["cpc_limit"]
+    )
 
 
 @admin.action(description="Request marketing type")
