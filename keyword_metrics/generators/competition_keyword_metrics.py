@@ -44,7 +44,9 @@ def generate_keyword_competition(queryset: QuerySet[BaseKeyword], region: Region
                 "partners_high_page_bid": row["high_page_bid_partners"],
             },
         )
+        import matplotlib
 
+        matplotlib.use("agg")
         volume_dataframe = pd.DataFrame.from_dict(row["monthly_volumes"])
         volume_plot = volume_dataframe.plot.bar(
             use_index=True, y="monthly_searches", width=0.9, figsize=(6, 3)
