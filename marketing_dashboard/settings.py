@@ -13,7 +13,6 @@ DEBUG = env.bool("IS_DEVELOPMENT", False)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", [])
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", [])
 CSRF_COOKIE_SECURE = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
 
 INSTALLED_APPS = [
     "django.contrib.admin",
