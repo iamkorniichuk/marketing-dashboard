@@ -10,8 +10,8 @@ def preprocess_keyword(text):
 class BaseKeyword(models.Model):
     class MarketingChoices(models.TextChoices):
         BLANK = "", ""
-        B2C = "B2C", "Business To Customer"
-        B2B = "B2B", "Business To Business"
+        B2C = "B2C", "B2C"
+        B2B = "B2B", "B2B"
 
     text = models.CharField(max_length=256, unique=True)
     marketing = models.CharField(
