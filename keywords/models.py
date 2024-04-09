@@ -13,7 +13,7 @@ class BaseKeyword(models.Model):
         B2C = "B2C", "B2C"
         B2B = "B2B", "B2B"
 
-    text = models.CharField(max_length=256, unique=True)
+    text = models.CharField(max_length=256)
     marketing = models.CharField(
         max_length=64,
         choices=MarketingChoices.choices,

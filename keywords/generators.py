@@ -26,7 +26,7 @@ def generate_similar_keywords(
     )
 
     for row in data:
-        if row["avg_cpc"] > cpc_limit:
+        if row["avg_cpc"] >= cpc_limit:
             obj, _ = ChatGptKeyword.objects.get_or_create(text=row["keyword"])
             obj.based_on.set(queryset)
 
