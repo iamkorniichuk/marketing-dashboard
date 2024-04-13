@@ -14,6 +14,7 @@ class TiktokBusinessApiClient(metaclass=Singleton):
     def __init__(self):
         with open(TIKTOK_BUSINESS_CONFIG) as file:
             self.credentials = json.load(file)
+
         self.api_client = ApiClient()
         self.reporting_service = ReportingApi()
         self.authentication_service = AuthenticationApi(self.api_client)
