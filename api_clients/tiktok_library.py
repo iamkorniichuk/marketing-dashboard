@@ -68,7 +68,7 @@ class TiktokLibraryApiClient(metaclass=Singleton):
 
                 webdriver.get(data["link"])
                 wait = WebDriverWait(webdriver, 10)
-                wait.until(
+                advertiser_a_tag = wait.until(
                     EC.element_to_be_clickable(
                         (By.CSS_SELECTOR, 'a.item_link[href*="adv_biz_ids"]')
                     )
@@ -84,13 +84,31 @@ class TiktokLibraryApiClient(metaclass=Singleton):
                 try:
                     advertisers[data["advertiser_id"]]["ads"].append(data)
                 except KeyError:
+                    webdriver.get(advertiser_a_tag.get_attribute("href"))
+                    wait.until(
+                        EC.visibility_of_element_located(
+                            (By.CSS_SELECTOR, "div.ad_card")
+                        )
+                    )
+                    adv_soup = BeautifulSoup(webdriver.page_source, "html.parser")
+                    total_ads_text = adv_soup.select_one("div.total_ads").get_text()
+
                     advertisers[data["advertiser_id"]] = {
                         "ads": [data],
                         "name": data["name"],
                         "location": data["Advertiser's registered location"],
                         "url": data["advertiser_url"],
+                        "total_ads": self.parse_total_ads(total_ads_text),
                     }
             return advertisers
+
+    def parse_total_ads(self, text):
+        pattern = r"(?:\d+,)*\d+"
+
+        match = re.search(pattern, text)
+        if match:
+            number = int(match.group().replace(",", ""))
+            return number
 
     def parse_ad_details(self, div):
         headers = [div.get_text() for div in div.select("div.ad_advertiser")]
