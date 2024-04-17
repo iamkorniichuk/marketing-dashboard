@@ -4,13 +4,13 @@ from commons.serializers import RepresentativePkRelatedField
 from campaigns.models import (
     CrossroadsCampaign,
     TiktokBusinessCampaign,
-    TiktokBusinessAdvertiser,
+    TiktokAdvertiser,
 )
 
 
 class TiktokBusinessAdvertiserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TiktokBusinessAdvertiser
+        model = TiktokAdvertiser
         fields = "__all__"
 
 
@@ -20,7 +20,7 @@ class TiktokBusinessCampaignSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     advertiser = RepresentativePkRelatedField(
-        queryset=TiktokBusinessAdvertiser.objects.all(),
+        queryset=TiktokAdvertiser.objects.all(),
         serializer_class=TiktokBusinessAdvertiserSerializer,
     )
 

@@ -1,5 +1,7 @@
 from django.db import models
 
+from regions.models import Region
+
 
 class CrossroadsCampaign(models.Model):
     class Meta:
@@ -13,8 +15,22 @@ class CrossroadsCampaign(models.Model):
         return self.name
 
 
-class TiktokBusinessAdvertiser(models.Model):
+class TiktokAdvertiser(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
+    name = models.CharField(max_length=128, blank=True)
+    region = models.ForeignKey(
+        Region, models.PROTECT, related_name="tiktok_advertisers", null=True
+    )
+    total_ads = models.PositiveIntegerField(null=True)
+
+    phone_number = models.CharField(max_length=16, blank=True)
+    email = models.EmailField(max_length=254, null=True)
+    facebook = models.URLField(max_length=256, null=True)
+    youtube = models.URLField(max_length=256, null=True)
+    linkedin = models.URLField(max_length=256, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class TiktokBusinessCampaign(models.Model):
@@ -25,7 +41,7 @@ class TiktokBusinessCampaign(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=256)
     advertiser = models.ForeignKey(
-        TiktokBusinessAdvertiser,
+        TiktokAdvertiser,
         on_delete=models.PROTECT,
         related_name="campaigns",
     )

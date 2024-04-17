@@ -3,7 +3,7 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 
 from api_clients import TiktokBusinessApiClient
-from campaigns.models import TiktokBusinessCampaign, TiktokBusinessAdvertiser
+from campaigns.models import TiktokBusinessCampaign, TiktokAdvertiser
 
 from campaign_metrics.models import TiktokBusinessCampaignMetrics
 
@@ -23,19 +23,17 @@ class Command(BaseCommand):
 
         advertisers = []
         for row in data:
-            obj = TiktokBusinessAdvertiser(id=row["advertiser_id"])
+            obj = TiktokAdvertiser(id=row["advertiser_id"])
             advertisers.append(obj)
 
-        results = TiktokBusinessAdvertiser.objects.bulk_create(
+        results = TiktokAdvertiser.objects.bulk_create(
             advertisers,
             ignore_conflicts=True,
         )
         return results
 
     def create_metrics(self):
-        for advertiser_id in TiktokBusinessAdvertiser.objects.values_list(
-            "id", flat=True
-        ):
+        for advertiser_id in TiktokAdvertiser.objects.values_list("id", flat=True):
             data = self.api_client.request_campaigns_report(
                 advertiser_id,
                 self.datetime,
