@@ -77,7 +77,7 @@ def _manually_login(webdriver):
     with open(GMAIL_CREDENTIALS) as file:
         credentials = json.load(file)
 
-    wait = WebDriverWait(webdriver, 10)
+    wait = WebDriverWait(webdriver, 20)
 
     actions = ActionChains(webdriver)
 
