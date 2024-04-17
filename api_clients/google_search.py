@@ -35,12 +35,11 @@ class GoogleSearchApiClient(metaclass=Singleton):
             self.proxy_config = json.load(file)
         self.base_url = "https://cse.google.com/cse"
 
-    def request_company_contacts_page(self, name, region_code):
+    def request_company_website(self, name, region_code):
         proxy = self.build_proxy(region_code)
         with DisplayWebdriver(proxy=proxy) as webdriver:
-            query = f"{name} contact"
             response = self.request_query_search(
-                webdriver, query, page=1, with_ads=False
+                webdriver, name, page=0, with_ads=False
             )
         soup = BeautifulSoup(response, "html.parser")
         first_search = soup.select_one("div.gsc-webResult.gsc-result").select_one(
@@ -74,27 +73,30 @@ class GoogleSearchApiClient(metaclass=Singleton):
 
         return len(sponsored_pages), len(free_pages)
 
-    def request_query_search(self, webdriver, query, page=0, with_ads=True) -> str:
-        @safe_selenium_request(default="")
-        def extract_ad_iframe(webdriver):
-            wait = WebDriverWait(webdriver, 10)
-            iframe = wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe#master-1"))
-            )
-            webdriver.switch_to.frame(iframe)
-            source = webdriver.page_source
-            webdriver.switch_to.default_content()
-            return source
-
+    def request_query_search(self, webdriver, query, page=0, with_ads=True):
         url = self.build_url(query, page)
         webdriver.get(url)
 
+        wait = WebDriverWait(webdriver, 15)
         if with_ads:
-            ads_page = extract_ad_iframe(webdriver)
+            iframe = safe_selenium_request(default="")(wait.until)(
+                (EC.presence_of_element_located((By.CSS_SELECTOR, "iframe#master-1")))
+            )
+
             whole_page = webdriver.page_source
+            webdriver.switch_to.frame(iframe)
+            ads_page = webdriver.page_source
 
             return whole_page + ads_page
-        return webdriver.page_source
+        else:
+            safe_selenium_request()(wait.until)(
+                (
+                    EC.presence_of_element_located(
+                        (By.CSS_SELECTOR, "div.gsc-webResult.gsc-result")
+                    )
+                )
+            )
+            return webdriver.page_source
 
     def build_url(self, search, page=0):
         request = PreparedRequest()
