@@ -35,6 +35,19 @@ class GoogleSearchApiClient(metaclass=Singleton):
             self.proxy_config = json.load(file)
         self.base_url = "https://cse.google.com/cse"
 
+    def request_company_contacts_page(self, name, region_code):
+        proxy = self.build_proxy(region_code)
+        with DisplayWebdriver(proxy=proxy) as webdriver:
+            query = f"{name} contact"
+            response = self.request_query_search(
+                webdriver, query, page=1, with_ads=False
+            )
+        soup = BeautifulSoup(response, "html.parser")
+        first_search = soup.select_one("div.gsc-webResult.gsc-result").select_one(
+            "a.gs-title"
+        )
+        return first_search["href"]
+
     def request_keywords_competition(self, keywords, region_code):
         results = {}
 
@@ -49,7 +62,9 @@ class GoogleSearchApiClient(metaclass=Singleton):
         proxy = self.build_proxy(region_code)
         with DisplayWebdriver(proxy=proxy) as webdriver:
             for i in range(pages):
-                response = self.request_query_search(webdriver, keyword, page=i)
+                response = self.request_query_search(
+                    webdriver, keyword, page=i, with_ads=True
+                )
                 soup = BeautifulSoup(response, "html.parser")
 
                 sponsored_pages.extend(
@@ -59,7 +74,7 @@ class GoogleSearchApiClient(metaclass=Singleton):
 
         return len(sponsored_pages), len(free_pages)
 
-    def request_query_search(self, webdriver, query, page=0) -> str:
+    def request_query_search(self, webdriver, query, page=0, with_ads=True) -> str:
         @safe_selenium_request(default="")
         def extract_ad_iframe(webdriver):
             wait = WebDriverWait(webdriver, 10)
@@ -74,10 +89,12 @@ class GoogleSearchApiClient(metaclass=Singleton):
         url = self.build_url(query, page)
         webdriver.get(url)
 
-        ads_page = extract_ad_iframe(webdriver)
-        whole_page = webdriver.page_source
+        if with_ads:
+            ads_page = extract_ad_iframe(webdriver)
+            whole_page = webdriver.page_source
 
-        return whole_page + ads_page
+            return whole_page + ads_page
+        return webdriver.page_source
 
     def build_url(self, search, page=0):
         request = PreparedRequest()
