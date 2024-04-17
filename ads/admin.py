@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.db.models import Avg
 
 from ads.models import TiktokAd
 
@@ -16,7 +17,7 @@ class TiktokAdAdmin(admin.ModelAdmin):
         "first_shown",
         "last_shown",
         "paid_for",
-        "total_viewers",
+        "get_total_viewers",
         "get_ages",
         "get_genders",
         "get_viewers",
@@ -37,10 +38,18 @@ class TiktokAdAdmin(admin.ModelAdmin):
     get_advertiser_region.admin_order_field = "advertiser__region"
 
     def get_advertiser_total_ads(self, obj):
-        return obj.advertiser.total_ads
+        total_ads = obj.advertiser.total_ads
+        if total_ads:
+            return f"{total_ads:,}"
 
     get_advertiser_total_ads.short_description = "Adv Total Ads"
     get_advertiser_total_ads.admin_order_field = "advertiser__total_ads"
+
+    def get_total_viewers(self, obj):
+        return f"{obj.total_viewers:,}"
+
+    get_total_viewers.short_description = "Viewers"
+    get_total_viewers.admin_order_field = "total_viewers"
 
     def get_url_tag(self, obj):
         return format_html(
@@ -50,32 +59,27 @@ class TiktokAdAdmin(admin.ModelAdmin):
     get_url_tag.short_description = "URL"
 
     def get_ages(self, obj):
-        results = []
-        for age in obj.ages.all():
-            results.append(f"{age.region.country_code}: {age.min_age}-{age.max_age}")
-        return ", ".join(results)
+        data = obj.ages.all().aggregate(min_avg=Avg("min_age"), max_avg=Avg("max_age"))
+        return f"{int(data['min_avg'])}-{int(data['max_avg'])}"
 
-    get_ages.short_description = "Ages"
+    get_ages.short_description = "Avg Age"
 
     def get_genders(self, obj):
-        results = []
-        for gender in obj.genders.all():
-            genders_code = []
-            if gender.is_male:
-                genders_code.append("M")
-            if gender.is_female:
-                genders_code.append("F")
-            if gender.is_unknown:
-                genders_code.append("U")
-            results.append(f"{gender.region.country_code}: {''.join(genders_code)}")
-        return ", ".join(results)
+        data = {
+            "male": obj.genders.filter(is_male=True).exists(),
+            "female": obj.genders.filter(is_female=True).exists(),
+            "unknown": obj.genders.filter(is_unknown=True).exists(),
+        }
+        genders = [name.capitalize() for name, value in data.items() if value]
+        return ", ".join(genders)
 
     get_genders.short_description = "Genders"
 
     def get_viewers(self, obj):
-        results = []
-        for viewer in obj.viewers.all():
-            results.append(f"{viewer.region.country_code}: {viewer.unique_viewers}")
-        return ", ".join(results)
+        count = obj.viewers.count()
+        viewers = obj.viewers.values_list("unique_viewers", flat=True).order_by(
+            "unique_viewers"
+        )
+        return f"{viewers[int(round(count/2))]:,}"
 
-    get_viewers.short_description = "Viewers"
+    get_viewers.short_description = "Median Viewers"
