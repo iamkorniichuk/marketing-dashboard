@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "keywords",
     "keyword_metrics",
     "regions",
+    "ads",
 ]
 
 MIDDLEWARE = [
@@ -123,4 +124,4 @@ REST_FRAMEWORK = {
 
 import logging
 
-logging.basicConfig(level="DEBUG")
+# logging.basicConfig(level="DEBUG")
