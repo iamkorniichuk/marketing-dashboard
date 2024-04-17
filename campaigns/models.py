@@ -18,6 +18,7 @@ class CrossroadsCampaign(models.Model):
 class TiktokAdvertiser(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128, blank=True)
+    website = models.URLField(null=True)
     region = models.ForeignKey(
         Region, models.PROTECT, related_name="tiktok_advertisers", null=True
     )
