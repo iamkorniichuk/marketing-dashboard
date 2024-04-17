@@ -16,6 +16,10 @@ class CrossroadsCampaign(models.Model):
 
 
 class TiktokAdvertiser(models.Model):
+    class Meta:
+        verbose_name = "Tiktok Advertiser"
+        verbose_name_plural = "Tiktok Advertisers"
+
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128, blank=True)
     website = models.URLField(null=True)

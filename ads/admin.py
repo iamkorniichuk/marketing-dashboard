@@ -10,14 +10,12 @@ class TiktokAdAdmin(admin.ModelAdmin):
     list_filter = ["advertiser__name"]
     list_display = [
         "id",
-        "get_url_tag",
         "get_advertiser_name",
-        "get_advertiser_region",
-        "get_advertiser_total_ads",
         "first_shown",
         "last_shown",
         "paid_for",
         "get_total_viewers",
+        "get_url_tag",
         "get_ages",
         "get_genders",
         "get_viewers",
@@ -28,22 +26,6 @@ class TiktokAdAdmin(admin.ModelAdmin):
 
     get_advertiser_name.short_description = "Adv"
     get_advertiser_name.admin_order_field = "advertiser__name"
-
-    def get_advertiser_region(self, obj):
-        region = obj.advertiser.region
-        if region:
-            return region.name
-
-    get_advertiser_region.short_description = "Adv Region"
-    get_advertiser_region.admin_order_field = "advertiser__region"
-
-    def get_advertiser_total_ads(self, obj):
-        total_ads = obj.advertiser.total_ads
-        if total_ads:
-            return f"{total_ads:,}"
-
-    get_advertiser_total_ads.short_description = "Adv Total Ads"
-    get_advertiser_total_ads.admin_order_field = "advertiser__total_ads"
 
     def get_total_viewers(self, obj):
         return f"{obj.total_viewers:,}"
