@@ -1,7 +1,16 @@
 from django.contrib import admin
 
-from campaigns.models import TiktokBusinessCampaign, CrossroadsCampaign
+from campaigns.models import (
+    TiktokBusinessCampaign,
+    CrossroadsCampaign,
+    TiktokAdvertiser,
+)
 from commons.admin import get_all_fieldnames
+
+
+@admin.register(TiktokAdvertiser)
+class TiktokAdvertiserAdmin(admin.ModelAdmin):
+    list_display = get_all_fieldnames(TiktokAdvertiser)
 
 
 @admin.register(TiktokBusinessCampaign)
