@@ -126,8 +126,15 @@ import logging
 
 logging.basicConfig(level="WARNING")
 
-SCRAPY_SETTINGS = {
+SCRAPY = {
     "ROBOTSTXT_OBEY": False,
     "USER_AGENT": "Mozilla/5.0 (Windows; Windows NT 10.4; WOW64; en-US) AppleWebKit/536.48 (KHTML, like Gecko) Chrome/50.0.3290.332 Safari/537.7 Edge/17.35740",
     "CONCURRENT_REQUESTS": 8,
+    "METAREFRESH_ENABLED": False,
+    "DOWNLOAD_TIMEOUT": 20,
+    "REQUEST_FINGERPRINTER_IMPLEMENTATION": "2.7",
+    "HTTPCACHE_ENABLED": False,
+    "SPIDER_MIDDLEWARES": {
+        "scrapy_sticky_meta_params.middleware.StickyMetaParamsMiddleware": 550,
+    },
 }
