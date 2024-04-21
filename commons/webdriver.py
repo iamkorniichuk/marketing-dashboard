@@ -14,6 +14,7 @@ class DisplayWebdriver:
         options.add_argument("--blink-settings=imagesEnabled=false")
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--window-size=600,400")
+        options.add_argument("--auto-open-devtools-for-tabs")
         self.kwargs = {"options": options}
         if proxy:
             self.kwargs["seleniumwire_options"] = {"proxy": proxy}
