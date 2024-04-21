@@ -70,7 +70,6 @@ def generate_ads():
             request_hrefs_kwargs["repeat"] = 50
 
         urls = tiktok_library_api_client.request_ad_hrefs(**request_hrefs_kwargs)
-        print(urls)
 
         advertisers = tiktok_library_api_client.request_ad_details(webdriver, urls)
 
