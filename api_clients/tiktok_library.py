@@ -50,6 +50,10 @@ class TiktokLibraryApiClient(metaclass=Singleton):
         webdriver.get(url)
 
         if until_id:
+            import time
+
+            print(until_id)
+            time.sleep(10)
             while not EC.presence_of_element_located(
                 (By.CSS_SELECTOR, f'a.link[href*="{until_id}"]')
             ):
@@ -64,7 +68,7 @@ class TiktokLibraryApiClient(metaclass=Singleton):
         hrefs = []
         for div in ads:
             url = f'{self.base_url}{div.select_one("a.link")["href"]}'
-            if until_id and url.contains(f"ad_id={until_id}"):
+            if until_id and f"ad_id={until_id}" in url:
                 break
             hrefs.append(url)
 

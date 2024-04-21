@@ -51,33 +51,27 @@ def ages_to_range(ages):
 
 
 def generate_ads():
-    # last = TiktokAd.objects.order_by("-id").first()
-    # if last:
-    #     until_id = last.id
+    last = TiktokAd.objects.order_by("-id").first()
+    if last:
+        until_id = last.id
 
     objs = []
     adv_objs = []
     with DisplayWebdriver() as webdriver:
-        # urls = tiktok_library_api_client.request_ad_hrefs(
-        #     webdriver,
-        #     start_time=datetime(year=2024, month=1, day=1),
-        #     end_time=datetime.now(),
-        #     repeat=10,
-        # )
+        request_hrefs_kwargs = {
+            "webdriver": webdriver,
+            "start_time": datetime(year=2024, month=1, day=1),
+            "end_time": datetime.now(),
+        }
+        if until_id:
+            request_hrefs_kwargs["until_id"] = until_id
+        else:
+            request_hrefs_kwargs["repeat"] = 50
 
-        # advertisers = tiktok_library_api_client.request_ad_details(webdriver, urls)
-        import json
+        urls = tiktok_library_api_client.request_ad_hrefs(**request_hrefs_kwargs)
+        print(urls)
 
-        def date_hook(json_dict):
-            for key, value in json_dict.items():
-                try:
-                    json_dict[key] = datetime.strptime(value, "%Y/%m/%d")
-                except:
-                    pass
-            return json_dict
-
-        with open("advertisers.json", encoding="utf-8") as file:
-            advertisers = json.load(file, object_hook=date_hook)
+        advertisers = tiktok_library_api_client.request_ad_details(webdriver, urls)
 
         user_agents = [
             {
