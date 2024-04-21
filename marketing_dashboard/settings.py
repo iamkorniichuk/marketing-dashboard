@@ -132,9 +132,17 @@ SCRAPY = {
     "CONCURRENT_REQUESTS": 8,
     "METAREFRESH_ENABLED": False,
     "DOWNLOAD_TIMEOUT": 20,
+    "RETRY_ENABLED": False,
+    "COOKIES_ENABLED": False,
+    "HTTPCACHE_ENABLED": True,
     "REQUEST_FINGERPRINTER_IMPLEMENTATION": "2.7",
-    "HTTPCACHE_ENABLED": False,
     "SPIDER_MIDDLEWARES": {
         "scrapy_sticky_meta_params.middleware.StickyMetaParamsMiddleware": 550,
+    },
+    "DEPTH_LIMIT": 1,
+    "DEPTH_PRIORITY": 1,
+    "DOWNLOAD_DELAY": 1,
+    "EXTENSIONS": {
+        "scrapy.extensions.closespider.CloseSpider": 500,
     },
 }

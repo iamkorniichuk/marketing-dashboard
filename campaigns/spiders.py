@@ -1,5 +1,4 @@
 import re
-from urllib.parse import urlparse
 from threading import Thread
 
 from django.conf import settings
@@ -9,23 +8,31 @@ from scrapy.http import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.crawler import CrawlerProcess
 from scrapy.spiders import CrawlSpider, Rule
+from scrapy import signals
+from pydispatch import dispatcher
+from crochet import setup
 
 from campaigns.models import TiktokAdvertiser
 
 
 class TiktokAdvertiserSavePipeline:
     def process_item(self, item, spider):
-        print(item)
+        fields = [
+            "website",
+            "phone_number",
+            "email",
+            "youtube",
+            "linkedin",
+            "facebook",
+        ]
+        defaults = {}
+        for name in fields:
+            if name in item:
+                defaults[name] = item[name]
+
         obj, _ = TiktokAdvertiser.objects.update_or_create(
             id=item["model_id"],
-            defaults={
-                "website": item.get("website", None),
-                "phone_number": item.get("phone_number", ""),
-                "email": item.get("email", None),
-                "youtube": item.get("youtube", None),
-                "linkedin": item.get("linkedin", None),
-                "facebook": item.get("facebook", None),
-            },
+            defaults=defaults,
         )
         return item
 
@@ -45,17 +52,18 @@ class ContactsSpider(CrawlSpider):
     custom_settings = {
         "ITEM_PIPELINES": {
             "campaigns.spiders.TiktokAdvertiserSavePipeline": 300,
-        }
+        },
+        "DEPTH_LIMIT": 1,
     }
     sticky_meta_keys = ["model_id", "website"]
 
     def __init__(self, items, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        dispatcher.connect(self.closed, signals.spider_closed)
         self.items = items
-        domains = [urlparse(obj["website"]).netloc for obj in items]
         self.rules = [
             Rule(
-                LinkExtractor(allow_domains=domains, unique=True),
+                LinkExtractor(unique=True),
                 callback=self.parse_contacts,
                 follow=True,
             )
@@ -68,7 +76,6 @@ class ContactsSpider(CrawlSpider):
                 url=obj["website"],
                 meta={"model_id": obj["model_id"], "website": obj["website"]},
                 callback=self.parse_contacts,
-                dont_filter=True,
             )
 
     def parse_contacts(self, response):
@@ -79,12 +86,21 @@ class ContactsSpider(CrawlSpider):
             except AttributeError:
                 return False
 
+        if "policies/contact-information" in response.url:
+            import os
+
+            print("WIN!")
+            os._exit(1)
+
+        for url in response.css("a::attr(href)").getall():
+            yield response.follow(url, self.parse_contacts)
+
         patterns = {
-            "email": r"([A-Za-z0-9]+[._])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+",
-            "phone_number": r"\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})",
-            "facebook": r"https?://(www\.)?(mbasic\.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:[^\s\/?]+)?(?:\?|\/|$)",
-            "linkedin": r"https?://(www\.)?linkedin\.com/company/[\w-]+(?=[^\w-]|$)",
-            "youtube": r"https?://(www\.)?(youtube\.com\/channel\/)(?:[^\s\/?]+)?(?:\?|\/|$)",
+            "email": r"[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}(\.[a-zA-Z]{2,6})?",
+            "phone_number": r"(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}",
+            "facebook": r"(https://)?(www\.)?(mbasic\.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:[^\s\/?]+)?(?:\?|\/|$)",
+            "linkedin": r"(https://)?(www\.)?linkedin\.com/company/[\w-]+(?=[^\w-]|$)",
+            "youtube": r"(https://)?(www\.)?(youtube\.com\/channel\/)(?:[^\s\/?]+)?(?:\?|\/|$)",
         }
 
         if is_response_text(response):
@@ -100,15 +116,24 @@ class ContactsSpider(CrawlSpider):
                 **data,
             )
 
+    def closed(self, reason):
+        crawled_urls = self.crawler.stats.get_value("response_received_count")
+        print(f"Total crawled URLs: {crawled_urls}")
+        item_count = self.crawler.stats.get_value("item_scraped_count")
+        print(f"Total contacts found: {item_count}")
+        elapsed_time = self.crawler.stats.get_value("elapsed_time_seconds")
+        print(f"Elapsed time: {elapsed_time}")
+
 
 def crawl_websites(models):
     def run():
+        setup()
         process = CrawlerProcess(settings.SCRAPY)
         process.crawl(
             ContactsSpider,
             items=[{"model_id": obj.id, "website": obj.website} for obj in models],
         )
-        process.start(stop_after_crawl=True, install_signal_handlers=False)
+        process.start(stop_after_crawl=False, install_signal_handlers=False)
 
     thread = Thread(target=run)
     thread.daemon = True
