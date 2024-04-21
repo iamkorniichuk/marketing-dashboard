@@ -52,6 +52,7 @@ def ages_to_range(ages):
 
 def generate_ads():
     last = TiktokAd.objects.order_by("-id").first()
+    until_id = None
     if last:
         until_id = last.id
 
