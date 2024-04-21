@@ -11,6 +11,7 @@ class TiktokAd(models.Model):
     last_shown = models.DateField()
     paid_for = models.CharField(max_length=128)
     total_viewers = models.PositiveIntegerField()
+    unique_viewers = models.PositiveIntegerField()
 
     def get_absolute_url(self):
         return f"https://library.tiktok.com/ads/detail/?ad_id={self.id}"

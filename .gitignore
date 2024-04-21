@@ -1,3 +1,6 @@
+# Cache
+.scrapy/
+
 # Credentials
 crossroads.json
 tiktok_business.json
