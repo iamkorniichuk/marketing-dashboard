@@ -22,13 +22,15 @@ class TiktokAdvertiserAdmin(admin.ModelAdmin):
     ]
 
     def get_region_name(self, obj):
-        return obj.region.name
+        if obj.region:
+            return obj.region.name
 
     get_region_name.short_description = "Region"
     get_region_name.admin_order_field = "region__name"
 
     def get_total_ads(self, obj):
-        return f"{obj.total_ads:,}"
+        if obj.total_ads:
+            return f"{obj.total_ads:,}"
 
     get_total_ads.short_description = "Ads"
     get_total_ads.admin_order_field = "total_ads"

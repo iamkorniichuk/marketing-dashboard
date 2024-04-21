@@ -121,7 +121,7 @@ def generate_ads():
             agent = random.choice(user_agents)
             set_user_agent(webdriver, agent["device"], agent["useragent"])
             adv_region = Region.objects.filter(name=info["location"]).first()
-            if not adv_region:
+            if adv_region is None:
                 adv_region = default_region
 
             webdriver.proxy = search_api_client.build_proxy(adv_region.country_code)
@@ -158,7 +158,7 @@ def generate_ads():
 
                 for data in ad["Age"]:
                     region = Region.objects.filter(name=data["Country"]).first()
-                    if not region:
+                    if region is None:
                         region = default_region
                     min_age, max_age = ages_to_range(data)
                     RegionAge.objects.create(
@@ -170,7 +170,7 @@ def generate_ads():
 
                 for data in ad["Location"]:
                     region = Region.objects.filter(name=data["Country"]).first()
-                    if not region:
+                    if region is None:
                         region = default_region
                     unique_viewers = number_repr_to_int(data["Unique users seen"])
                     RegionViewers.objects.create(
@@ -181,7 +181,7 @@ def generate_ads():
 
                 for data in ad["Gender"]:
                     region = Region.objects.filter(name=data["Country"]).first()
-                    if not region:
+                    if region is None:
                         region = default_region
                     RegionGender.objects.create(
                         ad=obj,
