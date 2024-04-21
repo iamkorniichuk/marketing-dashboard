@@ -129,7 +129,7 @@ logging.basicConfig(level="WARNING")
 SCRAPY = {
     "ROBOTSTXT_OBEY": False,
     "USER_AGENT": "Mozilla/5.0 (Windows; Windows NT 10.4; WOW64; en-US) AppleWebKit/536.48 (KHTML, like Gecko) Chrome/50.0.3290.332 Safari/537.7 Edge/17.35740",
-    "CONCURRENT_REQUESTS": 8,
+    "CONCURRENT_REQUESTS": 16,
     "METAREFRESH_ENABLED": False,
     "DOWNLOAD_TIMEOUT": 20,
     "RETRY_ENABLED": False,
@@ -142,7 +142,4 @@ SCRAPY = {
     "DEPTH_LIMIT": 1,
     "DEPTH_PRIORITY": 1,
     "DOWNLOAD_DELAY": 1,
-    "EXTENSIONS": {
-        "scrapy.extensions.closespider.CloseSpider": 500,
-    },
 }
